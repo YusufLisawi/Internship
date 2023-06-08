@@ -1,0 +1,24 @@
+<div class="modal-content dark-modal">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New {{optionName}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()"  >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr/>
+    <div class="modal-body">
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <label class="control-label" for="newOptionValue">Enter the name of the new {{optionName}} :</label>
+                    <input type="text" name="newOptionValue" class="form-control inputBlack" #newOptionValue/>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="closeModal()">Cancel</button>
+        <button type="button" class="btn btn" (click)="save(newOptionValue.value)">Save</button>
+    </div>
+</div>

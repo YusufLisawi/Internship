@@ -1,0 +1,65 @@
+<!-- <ng-template #modalContent let-close="close"> -->
+<div class="modal-content">
+    <div class="mb-3 modal-header">
+
+        <button type="button" class=" close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <div>
+            <!----   Action:{{interviewid}}-->
+            <!----   <div class="accordion mt-2">
+                <div class="accordion-item rounded-6">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button custom-accordion" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTechTest" aria-expanded="false" aria-controls="collapseTechTest">
+                            Hours of Interview
+                        </button>
+                    </h2>
+                </div>
+            </div>-->
+            <div class="text-center fs-6" *ngIf="resultArray.length === 0">Candidate not found for this day</div>
+            <div class=" accordion-item accordion rounded-6" *ngFor="let timeSlot of resultArray; let i = index"
+                [attr.id]="'collapseTechTest' + i">
+                <h2 class=" accordion-header">
+                    <button class="accordion-button custom-accordion" [attr.data-bs-target]="'#candidateInfo' + i"
+                        [attr.aria-labelledby]="'collapseTechTest' + i" data-bs-parent="#collapseTechTest" type="button"
+                        data-bs-toggle="collapse" [attr.aria-expanded]="i === 0 ? 'true' : 'false'"
+                        [attr.aria-controls]="'candidateInfo' + i">
+                        {{ timeSlot.timeSlot }}
+                    </button>
+                </h2>
+                <div class=" accordion-item rounded-6" [attr.id]="'candidateInfo' + i">
+                    <table class="pb-0 mb-0 table table-striped table-hover">
+                        <tbody>
+                            <tr *ngFor="let values of timeSlot.values">
+                                <th scope="row pl-2"> {{ values.value[0].firstName }}</th>
+                                <td scope="row pl-2">{{ values.value[0].lastName }}</td>
+                                <td scope="row pl-2">{{ values.value[0].email }}</td>
+                                <td scope="row pl-2">{{ values.value[0].diplome }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <table class="table table-bordered  bg-white">
+                        <tbody>
+                            <tr>
+                                <div class="ml-1 mr-1 row">
+                                    <td class="text-dark col-lg-3 text-center">{{ values.value[0].firstName }}</td>
+                                    <td class="text-dark col-lg-3 text-center">{{ values.value[0].lastName }}</td>
+                                    <td class="text-dark col-lg-3 text-center">{{ values.value[0].email }}</td>
+                                    <td class="text-dark col-lg-3 text-center">{{ values.value[0].diplome }}</td>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- </ng-template> -->

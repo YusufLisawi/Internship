@@ -1,0 +1,15 @@
+.technicalSection{
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px
+}
+
+textarea.form-control {
+  max-width: 100%;
+  max-height: 80px;
+  padding: 10px !important;
+  resize: none;
+  border: 1px solid #2b3553 !important;
+  border-radius: 0;
+  line-height: 2;
+}

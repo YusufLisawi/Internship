@@ -1,0 +1,26 @@
+name: Beca training core - CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout main branch from Github
+      uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build & Run with Maven
+      run: mvn clean install tomcat7:deploy
+
+    #- name: Run with java
+    #  run: start cmd /k java -jar C:\actions-runner-core\_work\beca-core\beca-core\target\beca-0.0.1-SNAPSHOT.jar
+    #C:\actions-runner-core\run-core.cmd

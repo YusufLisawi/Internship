@@ -1,0 +1,23 @@
+<div class="d-flex">
+  <ngb-datepicker #dp [displayMonths]="2" [dayTemplate]="t">
+  </ngb-datepicker>
+
+  <ng-template #t let-date="date" let-focused="focused">
+    <span class="custom-day" (click)="onDateSelection($event,date)" [class.focused]="focused"
+      [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+      [class.faded]="isHovered(date) || isInside(date)" [class.selected]="isDateSelected(date)"
+      [class.colored]="isColored(date)"
+      (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+      {{ date.day }}
+    </span>
+  </ng-template>
+
+  <div class="ml-3">
+    <label for="">Days of interviews : </label>
+    <ul>
+      <li *ngFor="let date of datesInterview" style="color: black;">
+        {{ date | date:'fullDate' }}
+      </li>
+    </ul>
+  </div>
+</div> 

@@ -1,0 +1,37 @@
+<!-- <div id="downloadModal" class="modal"> -->
+    <div class="modal-content dark-modal">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Download statistics</h4>
+            <button type="button" class="close" aria-label="Close" (click)="closeModal()"  >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <hr/>
+        <div class="modal-body">
+            <form>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label" for="sessionSelect">Select session :</label>
+                        <select class="form-control inputBlack" id='sessionSelect' #selectedSessionId (change)="updateData(selectedSessionId.value)">
+                            <option *ngFor="let session of allSessions" [value]="session.sessionId" >{{session.sessionName}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr/>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" (click)="closeModal()">Cancel</button>
+            <button type="button" class="btn btn" (click)="downloadPDF()">Download</button>
+        </div>
+    </div>
+<!-- </div> -->
+
+<div style="position:absolute;left:-9999px;top:-9999px;">
+    <img src="./assets/img/nttdata_logo_header.png" style="width: 200px;" id="logoimg"><br>
+    <canvas id="logoCanva" width="220" height="76"></canvas>
+    <div class=" chart-area"><canvas id="genderForPdf" width="300" height="150"></canvas></div>
+    <div class=" chart-area"><canvas id="diplomeForPdf" width="300" height="150"></canvas></div>
+    <div class=" chart-area"><canvas id="CitiesForPdf" width="500"></canvas></div>
+    <div class=" chart-area"><canvas id="universityForPdf" width="500"></canvas></div>
+</div>

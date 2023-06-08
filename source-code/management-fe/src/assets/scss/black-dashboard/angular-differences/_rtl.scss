@@ -1,0 +1,110 @@
+.rtl .fixed-plugin {
+    border-radius: 0 8px 8px 0;
+    left: 0;
+    right: unset;
+    .dropdown-menu {
+        left: 80px!important;
+        right: auto!important;
+    }
+}
+
+.rtl .off-canvas-sidebar .nav li.active>a:not([data-toggle=collapse]):before,
+.rtl .sidebar .nav li.active>a:not([data-toggle=collapse]):before {
+    left: unset;
+    right: -4px;
+}
+
+#myDIVInterview {
+    display: none;
+    float: right;
+}
+
+.modal-footer {
+    justify-content: right;
+    margin-top: -30px;
+    margin-right: -10px;
+}
+.modal{
+    background-color: #6a76b96e;
+}
+
+.rtlDivYes {
+    background-color: rgba(140, 255, 136, 0.4);
+    border-radius: 12px;
+    text-align: center;
+    width: 80%;
+}
+
+.rtlDivnone {
+    background-color: rgba(176, 184, 176, 0.699);
+    border-radius: 12px;
+    text-align: center;
+    width: 100px;
+}
+
+.rtlDivYes1 {
+    background-color: rgba(140, 255, 136, 0.4);
+    border-radius: 12px;
+    text-align: center;
+    width: 100%;
+}
+
+.rtlDivNo {
+    background-color: rgba(255, 136, 136, 0.4);
+    border-radius: 12px;
+    text-align: center;
+    width: 70%;
+}
+
+.select1 {
+    width: fit-content;
+    float: right;
+}
+
+.card-header {
+    margin-bottom: -30px;
+}
+
+.modMediumrtl {
+    max-width: 75% !important;
+    margin-top: -210px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.modMediumrtl1 {
+    max-width: 82% !important;
+    margin-top: -210px;
+}
+
+.modal-header {
+    margin-top: -5px;
+}
+
+.borderLft {
+    border-left: 5px solid rgba(76, 0, 255, 0.2);
+    margin-right: -16px;
+}
+
+.borderR {
+    border-right: 5px solid rgba(76, 0, 255, 0.2);
+}
+
+.inputBlack {
+    color: rgb(37, 37, 37) !important;
+}
+
+.top {
+    margin-top: -10px;
+}
+
+#w3review {
+    border-radius: 10px;
+    color: rgb(37, 37, 37);
+}
+
+.score {
+    height: 30px;
+}

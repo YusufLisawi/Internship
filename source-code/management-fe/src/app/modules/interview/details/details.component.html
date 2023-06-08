@@ -1,0 +1,170 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Candidate Details</h4>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+    </div>
+    <hr>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-8">
+                <div class="con">
+                    <pdf-viewer [src]="src" [original-size]="false" [show-all]=" true" [zoom-scale]=" 'page-width'"
+                        [stick-to-page]="false" [render-text]="true" [external-link-target]=" 'blank'"
+                        style="position: initial;"></pdf-viewer>
+                </div>
+            </div>
+            <div class="col-4">
+                <form [formGroup]="scoreForm">
+                    <div class="form-row mb-1">
+                        <div class="col">
+                            <label for="validationCustom01" class="mb-0">FIRST NAME</label>
+                            <input type="text" class="form-control inputBlack" name="firstName" id="validationCustom01"
+                                value="{{candidate.firstName}}" disabled required>
+                        </div>
+                        <div class="col">
+                            <label for="validationCustom02" class="mb-0">LAST NAME</label>
+                            <input type="text" class="form-control inputBlack" name="lastName" id="validationCustom02"
+                                value="{{candidate.lastName}}" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-1">
+                        <div class="col">
+                            <label for="exampleInputEmail1" class="form-label mb-0">CITY </label>
+                            <input type="text" class="form-control inputBlack" name="city" id="name"
+                                value="{{candidate.city}}" disabled required>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1" class="form-label mb-0">EMAIL</label>
+                            <input type="email" class="form-control inputBlack" name="mail" id="name"
+                                aria-describedby="emailHelp" value="{{candidate.email}}" disabled required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-1">
+                        <div class="col">
+                            <label for="exampleInputEmail1" class="form-label mb-0">UNIVERSITY</label>
+                            <input type="text" class="form-control inputBlack" id="name" name="university"
+                                value="{{candidate.university}}" disabled required>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1" class="form-label mb-0">PHONE NUMBER</label>
+                            <input type="number" class="form-control inputBlack" id="name" name="phoneNumber"
+                                aria-describedby="emailHelp" value="{{candidate.phoneNumber}}" disabled required>
+                        </div>
+                    </div>
+                    <div class="accordion mt-2">
+                        <div class="accordion-item rounded-6">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button custom-accordion" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTechTest" aria-expanded="false"
+                                    aria-controls="collapseTechTest">
+                                    Technical Exam
+                                </button>
+                            </h2>
+                            <div class="form-row p-2 accordin-collapse collapse" id="collapseTechTest"
+                                aria-labelledby="headingOne" data-bs-parent="#collapseTechTest">
+                                <div class="form-row technicalSection">
+                                    <label for="exampleInputEmail1" class="form-label mb-0">TECHINCAL
+                                        OBSERVATION</label>
+                                    <input type="text" id="technicalDesc" formControlName="technicalDesc"
+                                        name="technicalDesc" class="form-control inputBlack"
+                                        placeholder="observation..." />
+                                </div>
+                                <div class="form-row technicalSection">
+                                    <div class="col pl-0">
+                                        <label for="exampleInputEmail1" class="form-label mb-0">Test Score</label>
+                                        <input type="number" class="form-control inputBlack "
+                                            formControlName="technicalTestScore" name="technicalTestScore" id="name"
+                                            size="1" placeholder="test Score" maxlength="6" />
+                                    </div>
+                                    <div class="col pr-0">
+                                        <label for="exampleInputEmail1" class="form-label mb-0">Interview Score</label>
+                                        <input type="number" class="form-control inputBlack"
+                                            formControlName="technicalInterviewScore" name="technicalInterviewScore"
+                                            id="name" size="1" placeholder="interview score" maxlength="6" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button custom-accordion" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsePeaple" aria-expanded="true"
+                                    aria-controls="collapsePeaple">
+                                    Peaple Interview
+                                </button>
+                            </h2>
+                            <div class="form-row p-2 accordion-collapse collapse" id="collapsePeaple" aria-labelledby="headingTwo" data-bs-parent="#collapsePeaple">
+                                <div class="w-100 px-2">
+                                    <label for="exampleInputEmail1" class="form-label mb-0">PEOPLE OBSERVATION</label>
+                                    <textarea id="w3review" name="w3review" formControlName="peopleDesc"
+                                        class="inputBlack form-control" name="peopleDesc" rows="2" cols="40"
+                                        placeholder="observation..."></textarea>
+                                </div>
+                                <div class="w-100 px-2">
+                                    <label for="exampleInputEmail1" class="form-label mb-0">SCORE</label>
+                                    <input type="number" class="form-control inputBlack" formControlName="peopleScore"
+                                        name="peopleScore" id="name" size="1" placeholder="score"
+                                        maxlength="6" />
+                                </div>
+                                <div class="form-row w-100 ml-0">
+                                    <div class="col">
+                                        <label class="mb-0">ENGLISH :</label>
+                                        <select class="form-select" formControlName="englishLevel" name="englishLevel">
+                                            <option selected>Choose...</option>
+                                            <option value="A1">A1</option>
+                                            <option value="A2">A2</option>
+                                            <option value="B1">B1</option>
+                                            <option value="B2">B2</option>
+                                            <option value="C1">C1</option>
+                                            <option value="C2">C2</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="mb-0">SPANISH :</label>
+                                        <select class="form-select" formControlName="spanishLevel" name="spanishLevel">
+                                            <option selected>Choose...</option>
+                                            <option value="A1">A1</option>
+                                            <option value="A2">A2</option>
+                                            <option value="B1">B1</option>
+                                            <option value="B2">B2</option>
+                                            <option value="C1">C1</option>
+                                            <option value="C2">C2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item rounded-6">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button custom-accordion" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseSoftSkills" aria-expanded="true"
+                                    aria-controls="collapseSoftSkills">
+                                    Softskills Interview
+                                </button>
+                            </h2>
+                            <div class="form-row p-2 accordion-collapse collapse" id="collapseSoftSkills" aria-labelledby="headingThree" data-bs-parent="#collapseSoftSkills">
+                                <div class="w-100 px-2">
+                                    <label for="exampleInputEmail1" class="form-label mb-0">SOFTSKILLS OBSERVATION</label>
+                                    <textarea id="w3review" class="inputBlack form-control" formControlName="softSkillsDesc"
+                                        name="softSkillsDesc" name="w3review" placeholder="observation..." rows="2"
+                                        cols="40"></textarea>
+                                </div>
+                                <div class="w-100 px-2">
+                                    <label for="exampleInputEmail1" class="form-label mb-0">SCORE</label>
+                                    <input type="number" class="form-control inputBlack"
+                                        formControlName="softSkillsScore" name="softSkillsScore" id="name" size="1"
+                                        placeholder="score" maxlength="6" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="closeModal()" id="cheat">Close</button>
+        <button type="button" class="btn btn" (click)="addScore(scoreForm.value,candidate.candidateId)">Save</button>
+    </div>
+</div>

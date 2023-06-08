@@ -1,0 +1,101 @@
+<div class=" content">
+    <div class="row">
+        <div [ngClass]="currentSession?.type=='internship'?'col-md-4':'col-md-3'" class=" stretch-card grid-margin">
+            <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #b4c6e9 ,#6785C1);">
+                <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mt-2 mb-3 text-white">Total number of candidates</h4>
+                    <h2 class="mb-4 text-white"> <i class="fas fa-user text-white mx-2"></i>
+                        {{dashboardData?.candidateNumber||0}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.currentSession?.type!='internship'" class="col-md-3 stretch-card grid-margin">
+            <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #b4c6e9 ,#6785C1);">
+                <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mt-2 mb-3 text-white">Preselected candidates</h4>
+                    <h2 class="mb-4 text-white"> <i class="fas fa-hand-point-up text-white mx-2"></i>
+                        {{dashboardData?.preselectedCandidateNumber||0}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="currentSession?.type=='internship'?'col-md-4':'col-md-3'" class=" stretch-card grid-margin">
+            <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #b4c6e9 ,#6785C1);">
+                <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mt-2 mb-3 text-white">Admitted candidates</h4>
+                    <h2 class="mb-4 text-white"> <i class="fas  fa-check text-white mx-2"></i>
+                        {{dashboardData?.admittedCandidateNumber||0}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div [ngClass]="currentSession?.type=='internship'?'col-md-4':'col-md-3'" class=" stretch-card grid-margin">
+            <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #b4c6e9 ,#6785C1);">
+                <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image" />
+                    <h4 class="font-weight-normal mt-2 mb-3 text-white">Admitted previous session</h4>
+                    <h2 class="mb-4 text-white"> <i class="fas fa-thumbtack text-white mx-2"></i>
+                        {{admitedPreviousSession||0}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class=" card-header">
+                    <h5 class="font-weight-normal mb-3">Admitted candidates</h5>
+                    <button id="openDownloadPopup" (click)="openModal()" class="btn" style="position: absolute; right: 2px; top: 2px; height: 10%;">Download statistics</button>
+                    <h3 class="mb-4"> <i class="fas fa-users text-info mx-2"></i>
+                        {{dashboardData?.admittedCandidateNumber||0}}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class=" chart-area"><canvas id="GendersChart"> </canvas></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class=" chart-area"><canvas id="DiplomeChart"> </canvas></div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class=" row">
+
+        <div class=" col-lg-6">
+            <div class=" card card-chart">
+                <div class=" card-header">
+                    <h5 class="font-weight-normal mb-3">Admitted candidates</h5>
+                    <h3 class="mb-4"> <i class="fas fa-id-badge text-info mx-2"></i> Original school</h3>
+                </div>
+                <div class=" card-body">
+                    <div class=" chart-area"><canvas id="UniversityChart"> </canvas></div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-6">
+            <div class=" card card-chart">
+                <div class=" card-header">
+                    <h5 class="font-weight-normal mb-3">Admitted candidates</h5>
+                    <h3 class="mb-4"> <i class="fas fa-map text-info mx-2"></i> City</h3>
+                </div>
+                <div class=" card-body">
+                    <div class=" chart-area"><canvas id="CitiesChart"> </canvas></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

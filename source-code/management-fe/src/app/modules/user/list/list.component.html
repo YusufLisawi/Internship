@@ -1,0 +1,70 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class="mt-2 ml-2">
+                    <span class="input-group-btn">
+                        <a (click)="goBack()" class="pointer"><i class="fa fa-backward mr-2"></i> Go back</a>
+                    </span>
+                </div>
+                <div class="card-header">
+                    
+                    <span class="input-group-btn float-right">
+                        <button class="btn btn-default" (click)="openModalArchivedUsers()">Archived Users</button>
+                    </span>
+                    <h3>USERS LIST</h3>
+                </div>
+                <hr>
+                <section class="bg-list">
+                    <div class="container bootstrap snippets bootdey tb">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="main-box-body clearfix">
+                                    <div class="table-responsive">
+                                        
+                                        <table class="table table-striped test1">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center"><span><b>LASTNAME</b></span></th>
+                                                    <th class="text-center"><span><b>FIRSTNAME</b></span></th>
+                                                    <th class="text-center"><span><b>USERNAME</b></span></th>
+                                                    <th class="text-center"><span><b>EMAIL</b></span></th>
+                                                    <th class="text-center"><span><b>Role</b></span></th>
+                                                    <th class="text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let user of usersFiltered">
+                                                    <td class="text-center">{{user.lastName}}</td>
+                                                    <td class="text-center">{{user.firstName}}</td>
+                                                    <td class="text-center">{{user.username}}</td>
+                                                    <td class="text-center">{{user.email}}</td>
+                                                    <td class="text-center">{{getUserRoles(user.role)}}</td>
+                                                    <td class="text-center">
+                                                        <i *ngIf="user.username != currentUserUsername" class="fa fa-edit mr-1" style="cursor: pointer;" title="Edit User" (click)="openModal(user.recruiterId)" ></i>
+                                                        <i *ngIf="user.username != currentUserUsername" class="fa fa-trash ml-1 text-danger" style="cursor: pointer;" title="Delete User" (click)="deleteUser(user.recruiterId)"></i>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <div class="d-flex justify-content-between">
+                                            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="changeNavigation()">
+                                            </ngb-pagination>
+                                            <select class="form-select select1" [(ngModel)]="pageSize" (ngModelChange)="changeNavigation()">
+                                              <option [ngValue]="5">5 Items</option>
+                                              <option [ngValue]="20">20 Items</option>
+                                              <option [ngValue]="50">50 Items</option>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

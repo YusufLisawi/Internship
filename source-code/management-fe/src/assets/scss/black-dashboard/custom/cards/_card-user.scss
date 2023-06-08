@@ -1,0 +1,40 @@
+.card-user {
+    overflow: hidden;
+    .image {
+        height: 120px;
+    }
+    .author {
+        text-align: center;
+        text-transform: none;
+        margin-top: 25px;
+        a+p.description {
+            margin-top: -7px;
+        }
+        .block {
+            position: absolute;
+            height: 100px;
+            width: 250px;
+        }
+    }
+    .avatar {
+        width: 202px;
+        height: 200px;
+        border: 9px solid lighten($black, 5%);
+        border-bottom-color: $transparent-bg;
+        background-color: $transparent-bg;
+        position: relative;
+    }
+    .card-body {
+        min-height: 240px;
+    }
+    hr {
+        margin: 5px 15px;
+    }
+    .button-container {
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    .card-description {
+        margin-top: 30px;
+    }
+}

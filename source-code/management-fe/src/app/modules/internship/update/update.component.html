@@ -1,0 +1,598 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Update the Internship</h3>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeModal()"
+    ></button>
+  </div>
+  <hr />
+
+  <form [formGroup]="editReactiveForm">
+    <div class="modal-body mt-0">
+      <div class="row">
+        <div class="form-row">
+          <div class="col-md-7">
+            <div class="form-row mb-3">
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Candidate
+                  </label>
+                  <input
+                    type="text"
+                    disabled
+                    name="candidate"
+                    formControlName="candidate"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.candidate.errors?.required &&
+                    editReactiveForm.controls.candidate.touched
+                  "
+                >
+                  <label class="error err">Candidate Required !</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Supervisor<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="supervisor"
+                    formControlName="supervisor"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.supervisor.errors?.required &&
+                    editReactiveForm.controls.supervisor.touched
+                  "
+                >
+                  <label class="error err">Supervisor Required !</label>
+                </div>
+                <div
+                  *ngIf="editReactiveForm.controls.supervisor.errors?.pattern"
+                >
+                  <label class="error err">Supervisor name not valid!</label>
+                </div>
+                <div
+                  *ngIf="editReactiveForm.controls.supervisor.errors?.minlength"
+                >
+                  <label class="error err"
+                    >Supervisor must be at least 2 characters</label
+                  >
+                </div>
+                <div
+                  *ngIf="editReactiveForm.controls.subject.errors?.maxlength"
+                >
+                  <label class="error err">Supervisor Too Long</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label" title="Supervisor email"
+                    >Supv Email<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="supervisorEmail"
+                    formControlName="supervisorEmail"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.supervisorEmail.errors
+                      ?.required &&
+                    editReactiveForm.get('supervisorEmail').touched
+                  "
+                >
+                  <label class="error err">Email Required !</label>
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.supervisorEmail.errors?.pattern
+                  "
+                >
+                  <label class="error err">Email not valid!</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label" title="Supervisor phone"
+                    >Supv Phone
+                  </label>
+                  <input
+                    type="text"
+                    name="supervisorPhone"
+                    formControlName="supervisorPhone"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.supervisorPhone.errors?.pattern
+                  "
+                >
+                  <label class="error err">Phone number not valid!</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Subject<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="text"
+                    name="subject"
+                    formControlName="subject"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.subject.errors?.required &&
+                    editReactiveForm.controls.subject.touched
+                  "
+                >
+                  <label class="error err">Subject Required !</label>
+                </div>
+                <div
+                  *ngIf="editReactiveForm.controls.subject.errors?.minlength"
+                >
+                  <label class="error err"
+                    >Subject must be at least 2 characters</label
+                  >
+                </div>
+                <div
+                  *ngIf="editReactiveForm.controls.subject.errors?.maxlength"
+                >
+                  <label class="error err">Subject Too Long</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <div class="col-md-3 d-flex pl-0">
+                    <label class="control-label"
+                      >Type<span class="error font-trans">*</span>
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      type="radio"
+                      id="pfa"
+                      value="PFA"
+                      name="type"
+                      formControlName="type"
+                      class="form-check-input"
+                    />
+                    <label class="form-check-label" class="control-label"
+                      >PFA
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      type="radio"
+                      id="pfe"
+                      value="PFE"
+                      name="type"
+                      formControlName="type"
+                      class="form-check-input"
+                    />
+                    <label class="form-check-label" class="control-label"
+                      >PFE
+                    </label>
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      type="radio"
+                      id="Stage"
+                      value="Stage"
+                      name="type"
+                      formControlName="type"
+                      class="form-check-input"
+                    />
+                    <label class="form-check-label" class="control-label"
+                      >Stage
+                    </label>
+                  </div>
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.type.errors?.required &&
+                    editReactiveForm.controls.type.touched
+                  "
+                >
+                  <label class="error err">Type Required !</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Start Date<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="date"
+                    name="startDate"
+                    formControlName="startDate"
+                    value="{{ selectedRow?.startDate }}"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.startDate.errors?.required &&
+                    editReactiveForm.controls.startDate.touched
+                  "
+                >
+                  <label class="error err">Start date Required !</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >End Date<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="date"
+                    name="endDate"
+                    formControlName="endDate"
+                    value="{{ selectedRow?.endDate }}"
+                    class="form-control inputBlack w-75"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.endDate.errors?.required &&
+                    editReactiveForm.controls.endDate.touched
+                  "
+                >
+                  <label class="error err">End Date Required !</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 borderLft">
+            <div class="form-row mb-3">
+              <div class="col-md-9">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >CIN<span class="error font-trans">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    name="cin"
+                    formControlName="cin"
+                    class="form-control inputBlack w-75"
+                    (change)="onselectFile($event)"
+                    accept="application/pdf"
+                    class="form-control inputBlack {{
+                      !editReactiveForm.controls.cin.valid &&
+                      editReactiveForm.controls.cin.touched
+                        ? 'error'
+                        : ''
+                    }}"
+                  />
+                </div>
+                <div *ngIf="cinFile" class="progress">
+                  <div
+                    class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ cinProgress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: cinProgress + '%' }"
+                  >
+                    {{ cinProgress }}%
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <span
+                  class="badge custom-badge badge-lg rounded-pill text-dark"
+                  [ngClass]="
+                    this.selectedFiles[0] && this.selectedFiles[0]?.length
+                      ? 'bg-success'
+                      : 'bg-secondary'
+                  "
+                  >{{ getFileSelected("cin") }}</span
+                >
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col-md-9">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Agreement<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="file"
+                    name="agreement"
+                    formControlName="agreement"
+                    class="form-control inputBlack w-75"
+                    (change)="onselectFile($event)"
+                    accept="application/pdf"
+                    class="form-control inputBlack {{
+                      !editReactiveForm.controls.agreement.valid &&
+                      editReactiveForm.controls.agreement.touched
+                        ? 'error'
+                        : ''
+                    }}"
+                  />
+                </div>
+                <div *ngIf="agreementFile" class="progress">
+                  <div
+                    class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ agreementProgress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: agreementProgress + '%' }"
+                  >
+                    {{ agreementProgress }}%
+                  </div>
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.agreement.errors?.required &&
+                    editReactiveForm.controls.agreement.touched
+                  "
+                >
+                  <label class="error err">File date Required !</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <span
+                  class="badge custom-badge badge-lg rounded-pill text-dark"
+                  [ngClass]="
+                    this.selectedFiles[1] && this.selectedFiles[1]?.length
+                      ? 'bg-success'
+                      : 'bg-secondary'
+                  "
+                  >{{ getFileSelected("agreement") }}</span
+                >
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col-md-9">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Assurance<span class="error font-trans">*</span></label
+                  >
+                  <input
+                    type="file"
+                    name="assurance"
+                    formControlName="assurance"
+                    class="form-control inputBlack w-75"
+                    (change)="onselectFile($event)"
+                    accept="application/pdf"
+                    class="form-control inputBlack {{
+                      !editReactiveForm.controls.assurance.valid &&
+                      editReactiveForm.controls.assurance.touched
+                        ? 'error'
+                        : ''
+                    }}"
+                  />
+                </div>
+                <div *ngIf="assuranceFile" class="progress">
+                  <div
+                    class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ assuranceProgress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: assuranceProgress + '%' }"
+                  >
+                    {{ assuranceProgress }}%
+                  </div>
+                </div>
+                <div
+                  *ngIf="
+                    editReactiveForm.controls.assurance.errors?.required &&
+                    editReactiveForm.controls.assurance.touched
+                  "
+                >
+                  <label class="error err">File Required !</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <span
+                  class="badge custom-badge badge-lg rounded-pill text-dark"
+                  [ngClass]="
+                    this.selectedFiles[2] && this.selectedFiles[2]?.length
+                      ? 'bg-success'
+                      : 'bg-secondary'
+                  "
+                  >{{ getFileSelected("assurance") }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="top" />
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="form-row">
+          <div
+            class="col-md-4 d-flex align-items-center justify-content-center"
+          >
+            <div class="form-row d-flex">
+              <div class="col-md-8">
+                <div class="d-flex justify-content-between">
+                  <label class="control-label"
+                    >Report<span class="error font-trans">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    name="report"
+                    formControlName="report"
+                    class="form-control inputBlack w-75"
+                    (change)="onselectFile($event)"
+                    accept="application/pdf"
+                    class="form-control inputBlack {{
+                      !editReactiveForm.controls.report.valid &&
+                      editReactiveForm.controls.report.touched
+                        ? 'error'
+                        : ''
+                    }}"
+                  />
+                </div>
+                <div *ngIf="reportFile" class="progress">
+                  <div
+                    class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar"
+                    attr.aria-valuenow="{{ reportProgress }}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    [ngStyle]="{ width: reportProgress + '%' }"
+                  >
+                    {{ reportProgress }}%
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4" *ngIf="isRatable()">
+                <span
+                  class="badge w-100 custom-badge badge-lg rounded-pill text-dark"
+                  [ngClass]="
+                    this.selectedFiles[3] && this.selectedFiles[3]?.length
+                      ? 'bg-success'
+                      : 'bg-secondary'
+                  "
+                  >{{ getFileSelected("report") }}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 borderLft d-flex justify-content-center">
+            <div class="col-5">
+              <label class="control-label"
+                >Report Rating<span class="error font-trans">*</span>
+              </label>
+              <!-- [readonly]="
+              selectedRow.internshipStatus == 'in progress' ? true : false
+            " -->
+              <input
+                [readonly]="!isRatable()"
+                [value]="isRatable() ? editReactiveForm.value.reportRating : 0"
+                type="number"
+                name="reportRating"
+                formControlName="reportRating"
+                class="form-control inputBlack w-75"
+              />
+              <div
+                *ngIf="
+                  editReactiveForm.controls.reportRating.errors?.max ||
+                  editReactiveForm.controls.reportRating.errors?.min
+                "
+              >
+                <label class="error err">0-20 range required</label>
+              </div>
+            </div>
+            <div class="col-5">
+              <label class="control-label"
+                >Internship Rating<span class="error font-trans">*</span>
+              </label>
+              <input
+                [readonly]="!isRatable()"
+                [value]="
+                  isRatable() ? editReactiveForm.value.internshipRating : 0
+                "
+                type="number"
+                name="internshipRating"
+                formControlName="internshipRating"
+                class="form-control inputBlack w-75"
+                placeholder="/20"
+              />
+              <div
+                *ngIf="
+                  editReactiveForm.controls.internshipRating.errors?.max ||
+                  editReactiveForm.controls.internshipRating.errors?.min
+                "
+              >
+                <label class="error err">0-20 range required</label>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="d-flex align-items-center justify-content-center">
+                <i
+                  class="fa fa-info-circle fa-2x"
+                  [tooltip]="
+                    'To Inserting the ratings, you first need to add the internship report.'
+                  "
+                  position="left"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-md-4 borderLft d-flex justify-content-center align-items-center"
+          >
+            <div class="form-row mb-3">
+              <div class="col d-flex align-items-center">
+                <label class="control-label"
+                  >Training Certificate<span class="error font-trans">*</span>
+                </label>
+                <button
+                  class="btn text-white"
+                  [ngClass]="
+                    selectedRow.internshipStatus == 'rated' && isInternshipEnd()
+                      ? 'btn'
+                      : 'btn-secondary'
+                  "
+                  [disabled]="!isDownloadable()"
+                  (click)="DownloadCertificate()"
+                >
+                  Download
+                </button>
+                <i
+                  class="fa fa-info-circle fa-2x align-self-center"
+                  [tooltip]="
+                    'To download the training certificate, you first need to add the ratings for both internship and report, and ensure that the end date of the training period has been reached.'
+                  "
+                  position="left"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <hr class="top" />
+
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-info"
+      id="cheat"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn btn"
+      (click)="updateInternship()"
+      name="update"
+    >
+      Update
+    </button>
+  </div>
+</div>

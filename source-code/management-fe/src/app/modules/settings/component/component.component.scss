@@ -1,0 +1,22 @@
+@media screen and (max-width:1200px){
+    .minScreen{
+        display: none;
+    }
+    .tabs{ 
+        height: 387px;
+        margin-top: -12px;
+    } 
+    .tab-setion{
+
+    }
+    
+}
+.minScreen{
+    display: none;
+}
+.tab:hover .minScreen {
+     display: block;
+}
+.tabs{ 
+    height: 430px;
+} 

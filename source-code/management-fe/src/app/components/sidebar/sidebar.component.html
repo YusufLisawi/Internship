@@ -1,0 +1,28 @@
+<div class="logo">
+  <a routerLink="/" class="simple-text logo-normal">
+    <img src="./assets/img/logo.png" />
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav">
+    <ng-container *ngFor="let menuItem of menuItems">
+      <li
+        routerLinkActive="active"
+        *ngIf="
+          (currentRoutePath == 'internship' && menuItem.pathPfe) ||
+          (currentRoutePath == 'beca' && menuItem.pathBeca)
+        "
+        class="{{ menuItem.class }} nav-item"
+      >
+        <a
+          [routerLink]="
+            currentRoutePath == 'internship' ? menuItem.pathPfe : menuItem.pathBeca
+          "
+        >
+          <i class="fas {{ menuItem.icon }}"></i>
+          <p class="title1">{{ menuItem.title }}</p>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>

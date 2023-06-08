@@ -1,0 +1,170 @@
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="card-header">
+                    <h3>USER</h3>
+                </div>
+                <hr>
+                <div class="">
+                    <p class="card-text"></p>
+                    <div class="author p-5">
+
+                        <div class="title">
+                            <label class="hoverable" for="fileInput">
+                                <img class="avatar" [src]="imageUrl ? imageUrl : 'assets/img/default-avatar.png'">
+                                <div class="hover-text">Choose image</div>
+                                <div class="background"></div>
+                            </label>
+                            <br />
+                            <input id="fileInput" type='file' (change)="selectFile($event)">
+                        </div>
+                        <div [innerHtml]='msg' *ngIf="msg" class="alert">
+                        </div>
+                        <a *ngIf="imageUrl" (click)="deletePicture()" class="alert pointer"><i class="fa fa-ban"></i>Remove</a>
+
+                        <h3 class="title">{{currentUser?.firstName}} {{currentUser?.lastName}}</h3>
+                        <h4 class="description">{{currentUser?.username}}</h4>
+                        <button *hasRole="['ROLE_ADMIN'] " type="button" class="btn btnAddUser" (click)="openModal()"><i
+                                class="fas fa-plus"></i> Add User </button>&nbsp;
+                        <a *hasRole="['ROLE_ADMIN']" routerLink="list" class="btn btnAddUser"><i
+                                class="fas fa-users"></i> Users List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <form [formGroup]="currentUserForm" class="needs-validation" name="form" (ngSubmit)="updateUser()"
+                    novalidate>
+                    <div class="card-header">
+                        <h3>USER INFORMATIONS</h3>
+                    </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5 pr-md-1">
+                                <div class="form-group">
+                                    <label> Company </label>
+                                    <input class="form-control" placeholder="Company" type="text" value="NTT DATA"
+                                        disabled="disabled" />
+                                </div>
+                            </div>
+                            <div class="col-md-3 px-md-1">
+                                <div class="form-group">
+                                    <label> Username </label>
+                                    <input class="form-control" placeholder="Username" type="text"
+                                        value="{{currentUser.username}}" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-md-1">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"> Password</label>
+                                    <div class="form-group inner-addon right-addon">
+                                        <div class="input-group">
+                                            <input name="password" [type]="showPasswordOnPress ? 'text' : 'password'"
+                                                class="form-control" placeholder="Enter a new Password" formControlName="password" name="password">
+                                            <div (mousedown)="showPasswordOnPress = !showPasswordOnPress"
+                                                (mouseup)="showPasswordOnPress = !showPasswordOnPress">
+                                                <i alt="show" class="fas fa-eye eye-show"
+                                                    [class.hide]="showPasswordOnPress"></i>
+                                                <i alt="hide" class="fas fa-eye-slash eye-hide"
+                                                    [class.hide]="!showPasswordOnPress"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label> First name </label>
+                                    <input class="form-control" formControlName="firstName" name="firstName"
+                                        placeholder="Enter your Firstname"
+                                        class="form-control {{ !currentUserForm.controls?.firstName?.valid && currentUserForm.controls?.firstName?.touched ? 'error' : '' }}" />
+                                    <div
+                                        *ngIf="currentUserForm.controls.firstName.errors?.required && (currentUserForm.controls.firstName.touched || formSubmited)">
+                                        <label class="error err">Firstname required !</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.firstName.errors?.pattern">
+                                        <label class="error err">Firstname not valid!</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.firstName.errors?.maxlength">
+                                        <label class="error err">Firstname too long</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-md-1">
+                                <div class="form-group">
+                                    <label> Last name </label>
+                                    <input class="form-control" formControlName="lastName" name="lastName"
+                                        placeholder="Enter your LastName"
+                                        class="form-control {{ !currentUserForm.controls?.lastName?.valid && currentUserForm.controls?.lastName?.touched ? 'error' : '' }}" />
+                                    <div
+                                        *ngIf="currentUserForm.controls.lastName.errors?.required && (currentUserForm.controls.lastName.touched || formSubmited)">
+                                        <label class="error err">Lastname required !</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.lastName.errors?.pattern">
+                                        <label class="error err">Lastname not valid!</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.lastName.errors?.maxlength">
+                                        <label class="error err">Lastname too long</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 pl-md-1">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1"> Email </label>
+                                    <input class="form-control" formControlName="email" name="email" type="email"
+                                        placeholder="Enter your email"
+                                        class="form-control {{ !currentUserForm.controls?.email?.valid && currentUserForm.controls?.email?.touched ? 'error' : '' }}" />
+                                    <div *ngIf="currentUserForm.controls.email.errors?.required && (currentUserForm.controls.email.touched || formSubmited)">
+                                        <label class="error err">Email required !</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.email.errors?.pattern">
+                                        <label class="error err">Email not valid!</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.email.errors?.maxlength">
+                                        <label class="error err">Email too long</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Phone number </label>
+                                    <input class="form-control" formControlName="phoneNumber" name="phoneNumber"
+                                        placeholder="Enter your Phone number"
+                                        class="form-control {{ !currentUserForm.controls?.phoneNumber?.valid && currentUserForm.controls?.phoneNumber?.touched ? 'error' : '' }}" />
+                                    <div
+                                        *ngIf="currentUserForm.controls.phoneNumber.errors?.required && (currentUserForm.controls.phoneNumber.touched || formSubmited)">
+                                        <label class="error err">Phone number required !</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.phoneNumber.errors?.pattern">
+                                        <label class="error err">Phone number not valid!</label>
+                                    </div>
+                                    <div *ngIf="currentUserForm.controls.phoneNumber.errors?.maxlength">
+                                        <label class="error err">Phone number too long</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-footer">
+                        <button class="btn btn-fill btn-info-states" type="submit" *ngIf="!formSubmited" [disabled]="!currentUserForm.touched && !imageChanged">Save</button>
+                        <button class="btn btn-fill btn-info-states" type="button" disabled *ngIf="formSubmited">
+                            <div class="spinner-border" style="width: 1.25rem; height: 1.25rem; display: block;" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </button>
+                        <label class="error err ml-2" *ngIf="imageChanged">Click save to save image</label>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

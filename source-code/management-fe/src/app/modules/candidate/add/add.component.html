@@ -1,0 +1,193 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Add new Candidat</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<hr>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="con1">
+                <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [zoom-scale]="'page-width'"
+                    [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'"
+                    style="position: initial;"></pdf-viewer>
+            </div>
+        </div>
+        <div class="col-md-4 borderLft">
+            <form [formGroup]="addReactiveForm" (ngSubmit)="addCandidate()">
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label">Firstname<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="firstName" name="firstName"
+                            class="form-control inputBlack {{ !addReactiveForm.controls.firstName.valid && addReactiveForm.controls.firstName.touched ? 'error' : '' }}" />
+                        <div
+                            *ngIf="addReactiveForm.controls.firstName.errors?.required && addReactiveForm.get('firstName').touched">
+                            <label class="error err">FirstName Required !</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.firstName.errors?.minlength">
+                            <label class="error err">Firstname must be at least 3 characters</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.firstName.errors?.pattern">
+                            <label class="error err">Firstname not valid!</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.firstName.errors?.maxlength">
+                            <label class="error err">FirstName Too Long</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="control-label">Lastname<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="lastName" name="lastName"
+                            class="form-control inputBlack {{ !addReactiveForm.controls.lastName.valid && addReactiveForm.get('lastName').touched ? 'error' : '' }}" />
+                        <div
+                            *ngIf="addReactiveForm.controls.lastName.errors?.required && addReactiveForm.get('lastName').touched">
+                            <label class="error err">LastName Required !</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.lastName.errors?.minlength">
+                            <label class="error err">LastName must be at least 3 characters</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.lastName.errors?.pattern">
+                            <label class="error err">LastName not valid!</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.lastName.errors?.maxlength">
+                            <label class="error err">LastName Too Long</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label" for="phone">Phone Number:</label>
+                        <input type="text" id="phone" formControlName="phone"
+                            placeholder="0600000000"
+                            class="form-control inputBlack {{ addReactiveForm.controls.phone.invalid && addReactiveForm.controls.phone.touched ? 'error' : '' }}">
+                        <div
+                            *ngIf="addReactiveForm.controls.phone.errors?.required && addReactiveForm.controls.phone.touched">
+                            <label class="error err">Phone Number is required.</label>
+                        </div>
+                        <div
+                            *ngIf="addReactiveForm.controls.phone.errors?.pattern && addReactiveForm.controls.phone.touched">
+                            <label class="error err">The correct format is 0600000000.</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label class="control-label">Email<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="email" name="email"
+                            class="form-control inputBlack {{ !addReactiveForm.controls.email.valid && addReactiveForm.controls.email.touched ? 'error' : '' }}" />
+                        <div
+                            *ngIf="addReactiveForm.controls.email.errors?.required && addReactiveForm.get('email').touched">
+                            <label class="error err">Email Required !</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.email.errors?.pattern">
+                            <label class="error err">Email not valid!</label>
+                        </div>
+                        <div *ngIf="addReactiveForm.controls.email.errors?.maxlength">
+                            <label class="error err">Email Too Long</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="university" class="form-label inputBlack">University* </label>
+                        <select formControlName="university" name="university" required #university
+                            (change)="optionValueChanged('university', university.value)"
+                            class="form-select {{ !addReactiveForm.controls.university.valid && addReactiveForm.get('university').touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option *ngFor="let university of universities" [value]="university">{{university}}</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div
+                            *ngIf="addReactiveForm.controls.university.errors?.required && addReactiveForm.get('university').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="selectst" class="form-label inputBlack">Anapec* </label>
+                        <select formControlName="anapec" name="anapec"
+                            class="form-select {{ !addReactiveForm.controls.anapec.valid && addReactiveForm.get('anapec').touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                        <div
+                            *ngIf="addReactiveForm.controls.anapec.errors?.required && addReactiveForm.get('anapec').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="city" class="form-label inputBlack">City* </label>
+                        <select formControlName="city" name="city" required #city
+                            (change)="optionValueChanged('city', city.value)"
+                            class="form-select {{ !addReactiveForm.controls.city.valid && addReactiveForm.get('city').touched ? 'error' : '' }}">
+                          
+                            <option selected></option>
+                            <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div
+                            *ngIf="addReactiveForm.controls.city.errors?.required && addReactiveForm.get('city').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                        <div
+                        *ngIf="addReactiveForm.controls.city.errors?.pattern && addReactiveForm.controls.city.touched">
+                        <label class="error err">city not valid.</label>
+                    </div>
+                    </div>
+                    <div class="col">
+                        <label for="selectst" class="form-label inputBlack">Gender* </label>
+                        <select formControlName="gender" name="gender"
+                            class="form-select {{ !addReactiveForm.controls.gender.valid && addReactiveForm.get('gender').touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <div
+                            *ngIf="addReactiveForm.controls.gender.errors?.required && addReactiveForm.controls.gender.touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div *ngIf="currentFile" class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{ width: progress + '%' }">
+                                {{ progress }}%
+                            </div>
+                        </div>
+                        <div class="ml-2">
+                            <label for="file" id="file" class="form-label inputBlack">CV* <small
+                                    class="text-danger">(firstname_lasname.pdf)</small></label>
+                            <input type="file" (change)="onselectFile($event)" formControlName="cv" name="cv"
+                                accept="application/pdf"
+                                class="form-control inputBlack {{ !addReactiveForm.controls.cv.valid && addReactiveForm.controls.cv.touched ? 'error' : '' }}" />
+                            <div
+                                *ngIf="addReactiveForm.controls.cv.errors?.required && addReactiveForm.controls.cv.touched">
+                                <label class="error err">cv Required !</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="diplome" class="form-label inputBlack"> Diploma </label>
+                        <select formControlName="diplome" name="diplome"
+                            class="form-select {{ !addReactiveForm.controls.diplome.valid && addReactiveForm.get('diplome').touched ? 'error' : '' }}">
+                            <option *ngFor="let diploma of diplomas" [value]="diploma">{{diploma}}</option>
+                        </select>
+                        <div
+                            *ngIf="addReactiveForm.controls.diplome.errors?.required && addReactiveForm.get('diplome').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr class="top">
+<!-- <input type="submit" hidden (ngSubmit)="addCandidate()" [disabled]="!addReactiveForm.valid" /> -->
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" id="cheat" (click)="closeModal()">Close</button>
+    <button type="button" class="btn btn" (click)="addCandidate()" name="save">Save</button>
+</div>

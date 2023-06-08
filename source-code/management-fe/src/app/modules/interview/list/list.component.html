@@ -1,0 +1,135 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class="card-header">
+                    <h3>INTERVIEW</h3>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <form novalidate #form="ngForm">
+                        <div class="panel-heading">
+                            <span class="input-group-btn" style="margin-left: auto; display: block; width: fit-content;">
+                                <button class="btn btn-default" title="Filter" (click)="isFilterOpen=!isFilterOpen"><i class="fa fa-filter"></i> Filter</button>&nbsp;
+                                <button class="btn btn-default" title="Invitation" data-bs-toggle="modal" data-bs-target="#emailSender"><i class="fa fa-paper-plane"></i> Invitation</button>&nbsp;
+                                <button class="btn btn-default" title="Excel" (click)="exportExcel()"><i class="fas fa-file-excel"></i>  Excel</button>&nbsp;
+                                <button class="btn btn-default" title="Download candidate accepted in the technical test" (click)="exportpdf()"><i class="fa fa-download"></i>  Download PDF</button>&nbsp;
+                            </span>
+
+                            <div *ngIf="isFilterOpen">
+                                <div class="form-row">
+                                    <div class="col-4">
+                                        <label class="mr-sm-2 label1" for="inlineFormCustomSelect">Level of studies</label>
+                                        <select class="custom-select mr-sm-2 form-select1" name="levelOfStudy" [(ngModel)]="levelOfStudy">
+                                            <option></option>
+                                            <option *ngFor="let level of lvls" [value]="level">{{level}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="mr-sm-2 label1" for="inlineFormCustomSelect">University</label>
+                                        <select class="custom-select mr-sm-2 form-select1" name="university" [(ngModel)]="university">
+                                            <option selected></option>
+                                            <option *ngFor="let university of universities" [value]="university">{{university}}</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="mr-sm-2 label1" for="inlineFormCustomSelect">Anapec</label>
+                                        <select class="custom-select mr-sm-2 form-select1" name="anapec" [(ngModel)]="anapec">    <!-- Remove this if you want a continuous filter -->
+                                                <option></option>      
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                    </form>
+                    <div class="table-responsive">
+
+                        <table mdbTable id="dtBasicExample" class="table table-striped table-hover" id="excel-table">
+                            <thead>
+                                <th scope="col" (click)="changeOrder('Preselection')"></th>
+                                <th scope="col" (click)="changeOrder('fName')">First name</th>
+                                <th scope="col" (click)="changeOrder('lName')">Last name</th>
+                                <th scope="col" (click)="changeOrder('email')">Email</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col" (click)="changeOrder('city')">City</th>
+                                <th scope="col" (click)="changeOrder('university')">University</th>
+                                <!-- <th scope="col" (click)="changeOrder('presence')">Presence</th> -->
+                                <th scope="col" (click)="changeOrder('anapec')">Anapec</th>
+                                <th></th>
+                            </thead>
+
+                            <tbody id="myTable">
+                                <tr *ngFor=" let candidate of  (candidatelist | searchFilter: null : levelOfStudy : university : null : isFilterOpen : anapec) | tableFilter: orderBy :asc">
+                                    <td [ngClass]="candidate.score?.isAccepted==true ? 'bg-success' : candidate.score?.isAccepted==false && 'bg-danger'"></td>
+                                    <td>{{ candidate.firstName }}</td>
+                                    <td>{{ candidate.lastName }}</td>
+                                    <td>{{ candidate.email }}</td>
+                                    <td>{{ candidate.phoneNumber}}</td>
+                                    <td>{{ candidate.city }}</td>
+                                    <td>{{ candidate.university}}</td>
+                                    <!-- <td *ngIf=" candidate.presence=='true'">
+                                        <div class="presence_pre"> Yes </div>
+                                    </td>
+                                    <td *ngIf="candidate.presence=='false'">
+                                        <div class="presence_abs"> No </div>
+                                    </td>
+                                    <td *ngIf="candidate.presence==NULL">
+                                        <div class="rtlDivnone"> Undefined </div>
+                                    </td> -->
+                                    <td *ngIf="candidate.anapec=='true'">
+                                        <div class="presence_pre"> Yes </div>
+                                    </td>
+                                    <td *ngIf="candidate.anapec=='false'">
+                                        <div class="presence_abs"> No </div>
+                                    </td>
+                                    <td *ngIf="candidate.anapec==NULL">
+                                        <div class="rtlDivnone"> Undefined </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-list">
+                                            <i class="fa fa-eye pointer" (click)="openCandidatedetails(candidate)" title="Candidate Infos"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-between p-2">
+                        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshCandidates()">
+                        </ngb-pagination>
+
+                        <select class="form-select select1" [(ngModel)]="pageSize" (ngModelChange)="refreshCandidates()">
+                          <option [ngValue]="15">15 Items</option>
+                          <option [ngValue]="20">20 Items</option>
+                          <option [ngValue]="50">50 Items</option>
+                        </select>
+                    </div>
+
+                    <div class="modal" tabindex="-1" id="emailSender">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel">Confirmation to send EMAIL</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <hr>
+                                <div class="modal-body mb-4">
+                                    <h4 class="text-dark text-center ">Do you want to send an email to all accepted candidates?</h4>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" id="cheat">Close</button>
+                                    <button type="button" class="btn btn" (click)="sendEmail()">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

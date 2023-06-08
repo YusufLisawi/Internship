@@ -1,0 +1,308 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class="card-header">
+                    <h3>SETTINGS</h3>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <div class="radio-tabs">
+                        <input class="state" type="radio" title="Input1" name="input-state" id="radio1" checked />
+                        <input class="state" type="radio" title="Input2" name="input-state" id="radio2" />
+                        <input class="state" type="radio" title="Input3" name="input-state" id="radio3" />
+                        <input class="state" type="radio" title="Input4" name="input-state" id="radio4" />
+
+                        <!-- Left nevigation tab -->
+                        <div class="tabs" style="height: auto;">
+                            <label for="radio1" id="first-tab" class="tab">
+                                <span class="fas fa-cogs fa-2x"></span>
+                                <div class="tab-label">Weighting configuraion</div>
+                                <p class="minScreen">Set the weighting for all Test/Interview of the current session</p> 
+
+                            </label>
+
+                            <label for="radio2" id="second-tab" class="tab">
+                                <span class="fa fa-cog fa-2x"></span>
+                                <div class="tab-label">
+                                    Set denominator
+                                </div>
+                                <p class="minScreen">Set the weighting for all Test/Interview of the current session</p> 
+                            </label>
+                            <label for="radio3" id="third-tab" class="tab">
+                                <span class="fa fa-list-ol fa-2x">
+                                </span>
+                                <div class="tab-label">
+                                    Number of interviews
+                                </div>
+                                <p class="minScreen">Set the number of interviews organized per day in the current
+                                    session</p> 
+                            </label>
+                            <label for="radio4" id="fourth-tab" class="tab">
+                                <span class="fa fa-user fa-2x">
+                                </span>
+                                <div class="tab-label">
+                                    Session requirements
+                                </div>
+                                 <p class="minScreen">Set the current session requirements</p> 
+                            </label>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="panels">
+                            <!-- Weight / Dominators -->
+                            <form [formGroup]="reactiveForm" (ngSubmit)="add(reactiveForm.value)">
+                                <div id="first-panel" class="panel active animated slideInRight">
+                                    <h3>Weighting configuration</h3>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Soft Skills*</label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="softSkillsWeight" ngModel name="softSkillsWeight"
+                                                class="form-control {{ !reactiveForm.controls.softSkillsWeight.valid && reactiveForm.controls.softSkillsWeight.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.softSkillsWeight.errors?.required && reactiveForm.controls.softSkillsWeight.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div *ngIf="reactiveForm.controls.softSkillsWeight.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Technical Test*
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="technicalTestWeight" ngModel
+                                                name="technicalTestWeight"
+                                                class="form-control {{ !reactiveForm.controls.technicalTestWeight.valid && reactiveForm.controls.technicalTestWeight.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalTestWeight.errors?.required && reactiveForm.controls.technicalTestWeight.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div *ngIf="reactiveForm.controls.technicalTestWeight.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Technical Interview*
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="technicalInterviewWeight" ngModel
+                                                name="technicalInterviewWeight"
+                                                class="form-control {{ !reactiveForm.controls.technicalInterviewWeight.valid && reactiveForm.controls.technicalInterviewWeight.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalInterviewWeight.errors?.required && reactiveForm.controls.technicalInterviewWeight.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalInterviewWeight.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">People* </label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="peopleWeight" ngModel name="peopleWeight"
+                                                class="form-control {{ !reactiveForm.controls.peopleWeight.valid && reactiveForm.controls.peopleWeight.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.peopleWeight.errors?.required && reactiveForm.controls.peopleWeight.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div *ngIf="reactiveForm.controls.peopleWeight.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer floatRight">
+                                        <button type="submit" class="btn btn"
+                                            [disabled]="!reactiveForm.valid">Save</button>
+                                    </div>
+                                </div>
+                                <div id="second-panel" class="panel animated slideInRight">
+                                    <h3> Denominator configuration</h3>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Soft Skills* /
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="softSkillsDenominator" value=""
+                                                name="softSkillsDenominator"
+                                                class="form-control {{ !reactiveForm.controls.softSkillsDenominator.valid && reactiveForm.controls.softSkillsDenominator.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.softSkillsDenominator.errors?.required && reactiveForm.controls.softSkillsDenominator.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div *ngIf="reactiveForm.controls.softSkillsDenominator.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Technical Test*
+                                            /</label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="technicalTestDenominator" value=""
+                                                name="technicalTestDenominator"
+                                                class="form-control {{ !reactiveForm.controls.technicalTestDenominator.valid && reactiveForm.controls.technicalTestDenominator.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalTestDenominator.errors?.required && reactiveForm.controls.technicalTestDenominator.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalTestDenominator.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Technical Interview*
+                                            /</label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="technicalInterviewDenominator" value=""
+                                                name="technicalInterviewDenominator"
+                                                class="form-control {{ !reactiveForm.controls.technicalInterviewDenominator.valid && reactiveForm.controls.technicalInterviewDenominator.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalInterviewDenominator.errors?.required && reactiveForm.controls.technicalInterviewDenominator.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div
+                                                *ngIf="reactiveForm.controls.technicalInterviewDenominator.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-4 col-form-label">Communication* /
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input formControlName="peopleDenominator" value="" name="peopleDenominator"
+                                                class="form-control {{ !reactiveForm.controls.peopleDenominator.valid && reactiveForm.controls.peopleDenominator.touched ? 'error' : '' }}" />
+                                            <div
+                                                *ngIf="reactiveForm.controls.peopleDenominator.errors?.required && reactiveForm.controls.peopleDenominator.touched">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                            <div *ngIf="reactiveForm.controls.peopleDenominator.errors?.maxlength">
+                                                <label class="error err">Number Too Long</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer floatRight">
+                                        <button type="submit" class="btn btn"
+                                            [disabled]="!reactiveForm.valid">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Number of interviews -->
+                            <div id="third-panel" class="panel animated slideInRight">
+                                <h3>Enter the parameters of interviews</h3>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Number of interviews
+                                        in one day</label>
+                                    <div class="col-sm-6">
+                                        <input [(ngModel)]="dayInterviewNumber"
+                                            class="form-control {{ (dayInterviewNumber<0 || dayInterviewNumber>100 || !dayInterviewNumber) ? 'error' : '' }}" />
+                                        <div *ngIf="!dayInterviewNumber">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                        <div *ngIf="dayInterviewNumber>100">
+                                            <label class="error err">Number Too Long</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Starting time in day
+                                        of interview</label>
+                                    <div class="col-sm-6">
+                                        <input type="time" [(ngModel)]="startTimeOfInterview" class="form-control" />
+                                        <div *ngIf="!startTimeOfInterview">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">Ending time in day
+                                        of interview</label>
+                                     <div class="col-sm-6">
+                                         <input type="time" [(ngModel)]="endTimeOfInterview" class="form-control" />
+                                         <div *ngIf="!endTimeOfInterview">
+                                                <label class="error err">Required Field!</label>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword" class="col-sm-4 col-form-label">The duration of
+                                        interview</label>
+                                    <div class="col-sm-6">
+                                        <input [(ngModel)]="testDuration"
+                                            class="form-control {{ (!testDuration) ? 'error' : '' }}" />
+                                        <div *ngIf="!testDuration">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer floatRight">
+                                    <div class="card-footer">
+                                        <button class="btn btn-secondary" type="button"
+                                            (click)="updateInterviewNumber()"
+                                            [disabled]="(!dayInterviewNumber)">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Admitted candidates -->
+                            <div id="fourth-panel" class="panel animated slideInRight">
+                                <h3>Enter the requirement of current session</h3>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Number of admitted candidates*</label>
+                                    <div class="col-sm-6">
+                                        <input [(ngModel)]="admittedNumber"
+                                            class="form-control {{ (admittedNumber<0 || admittedNumber>100 || !admittedNumber) ? 'error' : '' }}" />
+                                        <div *ngIf="!admittedNumber">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                        <div *ngIf="admittedNumber>100">
+                                            <label class="error err">Number Too Long</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Eliminatory mark in technical test *</label>
+                                    <div class="col-sm-6">
+                                        <input [(ngModel)]="eliminatingMark"
+                                            class="form-control {{ (eliminatingMark<0 || eliminatingMark>10 || !eliminatingMark) ? 'error' : '' }}" />
+                                        <div *ngIf="!eliminatingMark">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                        <div *ngIf="eliminatingMark>10">
+                                            <label class="error err">Number Too Long</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">English level required*</label>
+                                    <div class="col-sm-6">
+                                        <input [(ngModel)]="englishLevel"
+                                            class="form-control {{ !englishLevel ? 'error' : '' }}" />
+                                        <div *ngIf="!englishLevel">
+                                            <label class="error err">Required Field!</label>
+                                        </div>
+                                        <div *ngIf="englishLevel>10">
+                                            <label class="error err">Number Too Long</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer floatRight">
+                                    <div class="card-footer">
+                                        <button class="btn btn-secondary" type="button" (click)="updateAdmittedNumber()"
+                                            [disabled]="admittedNumber<0 || admittedNumber>100 || !admittedNumber">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

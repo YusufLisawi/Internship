@@ -1,0 +1,38 @@
+.bg {
+    background: url("../../../img/back.jpg") no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: rgba(250, 250, 250, 0.87);
+    padding: 30px;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px 0px #000;
+}
+
+.form-container h1 {
+    color: #6785C1;
+    font-size: 40px;
+    font-family: Impact, sans-serif;
+}
+
+.button-color {
+    background-color: #6785C1;
+    padding: 8px 20px;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+.divimg {
+    display: flex;
+    justify-content: center;
+}
+
+.form-control {
+    border-radius: 10px;
+}

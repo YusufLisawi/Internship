@@ -1,0 +1,51 @@
+<!-- Edit Session Modal -->
+    <form [formGroup]="editReactiveForm" (ngSubmit)="updateSession()">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit Session</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <hr>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"> Session Name </label>
+                <input type="text" name="sessionName" placeholder="session name"
+                    class="inputBlack form-control {{ !editReactiveForm.controls.sessionName.valid && editReactiveForm.controls.sessionName.touched ? 'error' : '' }}"
+                    formControlName="sessionName">
+                <div
+                    *ngIf="editReactiveForm.controls.sessionName.errors?.required && (editReactiveForm.controls.sessionName.touched || formSubmited)">
+                    <label class="error err">Session Name Required !</label>
+                </div>
+                <div *ngIf="editReactiveForm.controls.sessionName.errors?.maxlength">
+                    <label class="error err">Session name too long!</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Technology</label>
+                <input type="text" name="technology" placeholder="technology"
+                    class="inputBlack form-control {{ !editReactiveForm.controls.technology.valid && editReactiveForm.controls.technology.touched ? 'error' : '' }}"
+                        formControlName="technology">
+                <div
+                    *ngIf="editReactiveForm.controls.technology.errors?.required && (editReactiveForm.controls.technology.touched || formSubmited)">
+                    <label class="error err">Technology Required !</label>
+                </div>
+                <div *ngIf="editReactiveForm.controls.technology.errors?.maxlength">
+                    <label class="error err">Technology too long!</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Session Date </label>
+                <input type="date" name="sessionDate"
+                    class="inputBlack form-control {{ !editReactiveForm.controls.sessionDate.valid && editReactiveForm.controls.sessionDate.touched ? 'error' : '' }}"
+                        formControlName="sessionDate">
+                <div
+                    *ngIf="editReactiveForm.controls.sessionDate.errors?.required && (editReactiveForm.controls.sessionDate.touched || formSubmited)">
+                    <label class="error err">Session Date Required !</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-bs-dismiss="modal" id="cheat1" (click)="closeModal()">Close</button>
+            <button type="submit" class="btn btn">Save</button>
+        </div>
+    </form>

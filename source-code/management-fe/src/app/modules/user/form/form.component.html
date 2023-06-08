@@ -1,0 +1,137 @@
+<div class="modal-content" *hasRole="['ROLE_ADMIN']">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{ id ? 'Edit user' : 'Add user' }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <hr>
+    <div class="modal-body">
+        <form [formGroup]="reactiveForm" class="needs-validation" name="form" (ngSubmit)="addRecruiter()" novalidate >
+            <div class="form-row">
+                <div class="form-row mb-2">
+                    <div class="col-6">
+                        <label for="validationCustom01"><b>First Name *</b></label>
+                        <input type="text" formControlName="firstName" class="form-control"
+                            placeholder="Enter the firstname" name="firstName"
+                            class="form-control inputBlack  {{ !reactiveForm.controls.firstName.valid && reactiveForm.controls.firstName.touched ? 'error' : '' }}" />
+                        <div *ngIf="reactiveForm.controls.firstName.errors?.required && (reactiveForm.controls.firstName.touched || formSubmited)">
+                            <label class="error err">Firstname required !</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.firstName.errors?.pattern">
+                            <label class="error err">Firstname not valid!</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.firstName.errors?.maxlength">
+                            <label class="error err">Firstname too long</label>
+                        </div>
+                    </div>
+                    <div class="col-6 ">
+                        <label for="validationCustom01"><b>Last Name *</b></label>
+                        <input type="text" formControlName="lastName" class="form-control"
+                            placeholder="Enter the lastname" name="lastName"
+                            class="form-control inputBlack {{ !reactiveForm.controls.lastName.valid && reactiveForm.controls.lastName.touched ? 'error' : '' }}" />
+                        <div *ngIf="reactiveForm.controls.lastName.errors?.required && (reactiveForm.controls.lastName.touched || formSubmited)">
+                            <label class="error err">Lastname required !</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.lastName.errors?.pattern">
+                            <label class="error err">Lastname not valid!</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.lastName.errors?.maxlength">
+                            <label class="error err">Lastname too long</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row mb-2">
+                    <div class="col flex-grow-1">
+                        <label for="validationCustom01"><b>Email *</b></label>
+                        <input type="text" formControlName="email" class="form-control"
+                            placeholder="Enter the email" name="email"
+                            class="form-control inputBlack  {{ !reactiveForm.controls.email.valid && reactiveForm.controls.email.touched ? 'error' : '' }}" />
+                        <div *ngIf="reactiveForm.controls.email.errors?.required && (reactiveForm.controls.email.touched || formSubmited)">
+                            <label class="error err">Email required !</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.email.errors?.pattern">
+                            <label class="error err">Email not valid!</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.email.errors?.maxlength">
+                            <label class="error err">Email too long</label>
+                        </div>
+                    </div>
+                    <div class="col flex-grow-1">
+                        <label for="validationCustom01"><b>Phone number *</b></label>
+                        <input type="text" formControlName="phoneNumber" class="form-control"
+                            placeholder="Enter the phone number" name="phoneNumber"
+                            class="form-control inputBlack {{ !reactiveForm.controls.phoneNumber.valid && reactiveForm.controls.phoneNumber.touched ? 'error' : '' }}" />
+                        <div *ngIf="reactiveForm.controls.phoneNumber.errors?.required && (reactiveForm.controls.phoneNumber.touched || formSubmited)">
+                            <label class="error err">Phone number required !</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.phoneNumber.errors?.pattern">
+                            <label class="error err">Phone number not valid!</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.phoneNumber.errors?.maxlength">
+                            <label class="error err">PhoneNumber too long</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-6">
+                        <label for="validationCustom01 mb-0"><b>Username *</b></label>
+                        <input *ngIf="!id" type="text" formControlName="userName" class="form-control inputBlack" name="userName" placeholder="Enter the username"
+                            class="form-control  {{ !reactiveForm.controls.userName.valid && reactiveForm.controls.userName.touched ? 'error' : '' }}" />
+                        <input *ngIf="id" type="text" formControlName="userName" disabled class="form-control inputBlack" />
+                        <div
+                            *ngIf="reactiveForm.controls.userName.errors?.required && (reactiveForm.controls.userName.touched || formSubmited)">
+                            <label class="error err">Username required !</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.userName.errors?.pattern">
+                            <label class="error err">Username not valid!</label>
+                        </div>
+                        <div *ngIf="reactiveForm.controls.userName.errors?.maxlength">
+                            <label class="error err">Username too long</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 sel33">
+                        <label for="validationTooltip01"><b>Password *</b></label>
+                        <div class="form-group inner-addon right-addon">
+                            <div class="input-group">
+                                <input name="password" formControlName="password" [type]="showPasswordOnPress ? 'text' : 'password'" placeholder="Enter the password" class="form-control inputBlack" style="border-radius: 10px;">
+                                <div (mousedown)="showPasswordOnPress = !showPasswordOnPress" (mouseup)="showPasswordOnPress = !showPasswordOnPress">
+                                    <i alt="show" class="fas fa-eye eye-show" [class.hide]="showPasswordOnPress"></i>
+                                    <i alt="hide" class="fas fa-eye-slash eye-hide" [class.hide]="!showPasswordOnPress"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!id && reactiveForm.controls.password.errors?.required && (reactiveForm.controls.password.touched || formSubmited)">
+                            <label class="error err">Password required !</label>
+                        </div>
+                        <div class="valid-tooltip">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label for="validationCustom01"><b>Roles * </b> <small>(you can check multiple roles)</small></label>
+                        <div class="weekDays-selector">
+                            <ng-container *ngFor="let role of roles">
+                                <input type="checkbox" id="{{role.name}}" #roleInput (click)="changeRole(role, roleInput.checked)" class="weekday" />
+                                <label for="{{role.name}}" class="px-2 mb-2" style="width: fit-content;">{{role.name}}</label>
+                            </ng-container>
+                        </div>
+                        <div *ngIf="!activeRoles.length && formSubmited">
+                            <label class="error err">You have to select at least one role !</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="closeModal()" data-bs-dismiss="modal" id="cheat">Close</button>
+        <button type="button" class="btn btn" (click)="actionRecruiter(reactiveForm.value)">Save</button>
+    </div>
+</div>

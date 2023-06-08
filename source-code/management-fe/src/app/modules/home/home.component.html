@@ -1,0 +1,28 @@
+<section class="bg">
+  <div class="container my-8">
+    <div class="card-grid">
+      <a routerLink="/beca/dashboard" class="card" *hasRole="['ROLE_ADMIN', 'ROLE_BECA']">
+        <div class="card-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Beca Training</h3>
+      </a>
+      <a routerLink="/internship/dashboard" class="card" *hasRole="['ROLE_ADMIN', 'ROLE_INTERNSHIP']">
+        <div class="card-icon">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3>Internship</h3>
+      </a>
+      <a routerLink="/certification/dashboard" class="card" *hasRole="['ROLE_ADMIN', 'ROLE_CERTIFICATION']">
+        <div class="card-icon">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <h3>Certifications</h3>
+      </a>
+    </div>
+  </div>
+  <button type="button" class="btn btnAddUser" (click)="logout()">
+    <i class="fas fa-sign-out-alt"></i>
+    Logout
+  </button>
+</section>

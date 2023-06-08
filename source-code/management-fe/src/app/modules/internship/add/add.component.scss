@@ -1,0 +1,65 @@
+input[type="radio"] {
+  margin-left: 0;
+  position: relative;
+}
+
+#ng-select-ele {
+  border-radius: 10px;
+  background-color: rgba(103, 133, 193, 0.6);
+  border: none;
+  color: #fff;
+}
+
+.ng-select.custom {
+  border-radius: 10px;
+  background-color: rgba(103, 133, 193, 0.6);
+  border: none;
+  color: #fff;
+}
+.ng-select.custom ::ng-deep .ng-select-container {
+  border-radius: 10px;
+  background-color: rgba(103, 133, 193, 0.6);
+  border: none;
+  color: #fff;
+}
+
+.ng-select.custom ::ng-deep .ng-option {
+  background-color: rgba(103, 133, 193, 0.6);
+  border: none;
+  color: #fff;
+}
+
+.ng-select.custom ::ng-deep .ng-option :first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.ng-select.custom ::ng-deep .ng-option :last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.ng-select.custom ::ng-deep .ng-option-selected {
+  background-color: rgb(98, 110, 150);
+  color: white;
+}
+.ng-select.custom ::ng-deep .ng-option-marked {
+  background-color: rgb(190, 198, 221) !important;
+}
+
+.ng-select.custom ::ng-deep .ng-option:hover {
+  background-color: rgb(190, 198, 221);
+}
+
+.ng-select.custom ::ng-deep .ng-arrow {
+  border-color: #000000 transparent transparent;
+}
+.ng-select-opened.custom ::ng-deep .ng-arrow {
+  border-color: transparent transparent #000000;
+}
+
+
+.ng-select.custom ::ng-deep .ng-clear {
+  border-color: transparent transparent #ff0000 !important;
+  color: #ff0000;
+}

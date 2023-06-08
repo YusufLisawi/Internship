@@ -1,0 +1,103 @@
+<div class="modal-header">
+    <h4 class="modal-title inputBlack" id="exampleModalLabel">Preselection</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<hr>
+<div class="modal-body top1">
+    <div class="row" style="margin-left: -5px; margin-right: -18px;">
+        <div class="col-7 borderRight">
+            <div class="float-right buttonsCV">
+                <button type="button" class="accept" (click)="changePreselectionStatus(true)"><i
+                        class="fas fa-check"> Accept </i></button>
+                <button type="button" class="reject" (click)="changePreselectionStatus(false)"> <i
+                        class="fas fa-times"></i> Reject </button>
+            </div>
+            <div class="col con2">
+                <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [zoom-scale]="'page-width'"
+                    [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'"
+                    style="position: initial; margin-right: -20px;">
+                </pdf-viewer>
+            </div>
+        </div>
+        <form class="col-3" [formGroup]="editReactiveForm" (ngSubmit)="updateCandidate()">
+            <h2 class="modal-title inputBlack" id="exampleModalLabel">Select Candidates</h2>
+            <div class="form-row inputGroup mt-2">
+                <div class="col-6">
+                    <label class="mb-0">First name</label>
+                    <input type="text" formControlName="firstName" class="form-control inputBlack"
+                        [value]="selectedRow.firstName" disabled>
+                </div>
+                <div class="col-6">
+                    <label class="mb-0">Last name</label>
+                    <input type="text" formControlName="lastName" class="form-control inputBlack"
+                        [value]="selectedRow.lastName" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-6">
+                    <label class="mb-0"> phone </label>
+                    <input type="text" formControlName="phone" class="form-control inputBlack"
+                        [value]="selectedRow.phoneNumber" disabled>
+                </div>
+                <div class="col-6">
+                    <label class="mb-0"> Email </label>
+                    <input type="text" formControlName="email" class="form-control inputBlack"
+                        [value]="selectedRow.email" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-6">
+                    <label class="mb-0"> University</label>
+                    <input type="text" formControlName="university" class="form-control inputBlack"
+                        [value]="selectedRow.university" disabled>
+                </div>
+                <div class="col-6">
+                    <label class="mb-0">Gender </label>
+                    <input type="text" formControlName="gender" class="form-control inputBlack"
+                        [value]="selectedRow.gender" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-6">
+                    <label class="mb-0">City</label>
+                    <input type="text" formControlName="city" class="form-control inputBlack"
+                        [value]="selectedRow.city" disabled>
+                </div>
+                <div class="col-6">
+                    <label class="mb-0"> Diploma </label>
+                    <input type="text" formControlName="diplome" class="form-control inputBlack"
+                        [value]="selectedRow.diplome" disabled>
+                </div>
+            </div>
+        </form>
+        <div class="col-2 vl">
+            <h3 class="modal-title inputBlack" id="exampleModalLabel">List
+                Candidates</h3>
+            <input type="text" class="form-control mt-2 inputBlack" placeholder="Search.." [(ngModel)]="searchText">
+            <select class="form-select mt-2" [(ngModel)]="preselectionSearch">
+                <option value="">All</option>
+                <option value="Pending">Pending</option>
+                <option value="true">Accepted</option>
+                <option value="false">Rejected</option>
+            </select>
+            <div class="list-group">
+                <div class="divTest">
+                    <tr *ngFor="let item of candidatesPres | PreselectionPipe: searchText : preselectionSearch ">
+                        <td height="1">
+                            <button type="button" class="list-group-item list-group-item-action"
+                                (click)="editCandidate(item)"
+                                [ngClass]="item.preselectionStatus==true ? 'greenList' : item.preselectionStatus==false ? 'redList' : 'whiteList'">
+                                <i class='fas fa-user-circle iSize'></i>
+                                {{ item.firstName}} {{ item.lastName}}
+                            </button>
+                        </td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="top">
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="closeModal()">Close</button>
+</div>

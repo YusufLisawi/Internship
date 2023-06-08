@@ -1,0 +1,234 @@
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>INTERNSHIP</h1>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form novalidate #form="ngForm">
+            <div class="panel-heading">
+              <span class="input-group-btn float-right">
+                <button
+                  class="btn btn-default"
+                  title="Filter"
+                  (click)="isFilterOpen = !isFilterOpen"
+                >
+                  <i class="fa fa-filter"></i> Filter</button
+                >&nbsp;
+                <button
+                  class="btn btn-default"
+                  title="Add Candidate"
+                  type="button"
+                  (click)="openAddModal()"
+                >
+                  <i class="fa fa-plus"></i> Add Internship</button
+                >&nbsp; &nbsp;
+              </span>
+
+              <!-- table cand -->
+
+              <div id="myDIVCv" *ngIf="isFilterOpen" class="myDIV1">
+                <div class="form-row">
+                  <div class="col-4 custom-slider">
+                    <label class="mr-sm-2 label1" for="inlineFormCustomSelect"
+                      >search by Name, Email or Subject</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control search-field"
+                      placeholder="Search Here"
+                      [(ngModel)]="searchText"
+                    />
+                  </div>
+                  <div class="col-5">
+                    <label class="mr-sm-2 label1" for="inlineFormCustomSelect"
+                      >Internship Status</label
+                    >
+                    <select
+                      class="custom-select mr-sm-2 form-select1"
+                      name="intenshipStatus"
+                      [(ngModel)]="intenshipStatus"
+                    >
+                      <option></option>
+                      <option *ngFor="let status of statuses" [value]="status">
+                        {{ status }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-5">
+                    <label class="mr-sm-2 label1" for="inlineFormCustomSelect"
+                      >Level of studies</label
+                    >
+                    <select
+                      class="custom-select mr-sm-2 form-select1"
+                      name="levelOfStudy"
+                      [(ngModel)]="levelOfStudy"
+                    >
+                      <option></option>
+                      <option *ngFor="let level of lvls" [value]="level">
+                        {{ level }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-5">
+                    <label class="mr-sm-2 label1" for="inlineFormCustomSelect"
+                      >Candidate University</label
+                    >
+                    <select
+                      class="custom-select mr-sm-2 form-select1"
+                      name="university"
+                      [(ngModel)]="university"
+                    >
+                      <option selected></option>
+                      <option
+                        *ngFor="let university of universities"
+                        [value]="university"
+                      >
+                        {{ university }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-5">
+                    <label class="mr-sm-2 label1" for="inlineFormCustomSelect"
+                      >Candidate City</label
+                    >
+                    <select
+                      class="custom-select mr-sm-2 form-select1"
+                      name="city"
+                      [(ngModel)]="city"
+                    >
+                      <option selected></option>
+                      <option *ngFor="let city of cities" [value]="city">
+                        {{ city }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br /><br />
+          </form>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <th scope="col"></th>
+                <th scope="col" (click)="changeOrder('name')">Candidate</th>
+                <th scope="col" (click)="changeOrder('email')">Email</th>
+                <th scope="col" (click)="changeOrder('diploma')">Diploma</th>
+                <th scope="col" (click)="changeOrder('university')">
+                  University
+                </th>
+                <th scope="col" (click)="changeOrder('subject')">Subject</th>
+                <th scope="col" (click)="changeOrder('type')">Type</th>
+                <th scope="col" (click)="changeOrder('supervisor')">
+                  Supervisor
+                </th>
+                <th scope="col" (click)="changeOrder('startDate')">Starts</th>
+                <th scope="col" (click)="changeOrder('endDate')">Ends</th>
+                <th scope="col" (click)="changeOrder('status')">Status</th>
+                <th scope="col" class="text-center">Actions</th>
+              </thead>
+
+              <tbody>
+                <tr
+                  *ngFor="
+                    let internship of internshipsFiltered
+                      | internshipSearchFilter
+                        : searchText
+                        : levelOfStudy
+                        : intenshipStatus
+                        : university
+                        : city
+                        : isFilterOpen
+                      | internshipSort : orderBy : asc
+                  "
+                >
+                  <td
+                    [ngClass]="
+                      internship?.internshipStatus == 'rated'
+                        ? internship?.internshipRating >= 10 &&
+                          internship?.reportRating >= 10
+                          ? 'bg-success'
+                          : 'bg-danger'
+                        : ''
+                    "
+                  ></td>
+
+                  <td>
+                    {{
+                      internship?.candidate.lastName +
+                        " " +
+                        internship?.candidate.firstName
+                    }}
+                  </td>
+                  <td>{{ internship?.candidate.email }}</td>
+                  <td>{{ internship?.candidate.diplome }}</td>
+                  <td>{{ internship?.candidate.university }}</td>
+                  <td>{{ internship?.subject }}</td>
+                  <td>{{ enumToString(internship.type) }}</td>
+                  <td>{{ internship?.supervisor }}</td>
+                  <td>
+                    <small>{{ internship?.startDate }}</small>
+                  </td>
+                  <td>
+                    <small>{{ internship?.endDate }}</small>
+                  </td>
+                  <td>{{ internship?.internshipStatus }}</td>
+                  <td class="text-center">
+                    <a data-tip="edit" class="aMargin pointer" title="Edit"
+                      ><i
+                        class="fa fa-edit"
+                        (click)="openUpdateModal(internship?.internshipId)"
+                      ></i
+                    ></a>
+                    <a
+                      data-tip="delete"
+                      class="aMargin pointer"
+                      title="Delete"
+                      *hasRole="['ROLE_ADMIN']"
+                      ><i
+                        class="fa fa-trash"
+                        (click)="deleteInternship(internship.internshipId)"
+                      ></i
+                    ></a>
+                    <a
+                      *ngIf="isDownloadable(internship)"
+                      data-tip="Download Certificate"
+                      class="aMargin pointer"
+                      title="Download Certificate"
+                      (click)="DownloadCertificate(internship)"
+                      ><i class="fas fa-arrow-circle-down"></i
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination
+              [collectionSize]="collectionSize"
+              [(page)]="page"
+              [pageSize]="pageSize"
+              (pageChange)="refreshInternships()"
+            >
+            </ngb-pagination>
+
+            <select
+              class="form-select select1"
+              [(ngModel)]="pageSize"
+              (ngModelChange)="refreshInternships()"
+            >
+              <option [ngValue]="15">15 Items</option>
+              <option [ngValue]="30">30 Items</option>
+              <option [ngValue]="50">50 Items</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="exampleModalLabel">Edit Candidate</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<hr>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="con1">
+                <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [zoom-scale]="'page-width'"
+                    [stick-to-page]="false" [render-text]="true" [external-link-target]="'blank'"
+                    style="position: initial;">
+                </pdf-viewer>
+            </div>
+        </div>
+        <div class="col-md-4 borderLft">
+            <form [formGroup]="editReactiveForm" (ngSubmit)="updateCandidate()">
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label">Firstname<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="firstName" name="firstName"
+                            class="form-control inputBlack {{ !editReactiveForm.controls.firstName.valid && editReactiveForm.controls.firstName.touched ? 'error' : '' }}"
+                            value="{{selectedRow.firstName}}" />
+                        <div
+                            *ngIf="editReactiveForm.controls.firstName.errors?.required && editReactiveForm.controls.firstName.touched">
+                            <label class="error err">FirstName Required
+                                !</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.firstName.errors?.minlength">
+                            <label class="error err">Firstname must be at least
+                                3 characters</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.firstName.errors?.pattern">
+                            <label class="error err">Firstname not
+                                valid!</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.firstName.errors?.maxlength">
+                            <label class="error err">FirstName Too Long</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="control-label">Lastname<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="lastName" name="lastName" value="{{selectedRow.lastName}}"
+                            class="form-control inputBlack {{ !editReactiveForm.controls.lastName.valid && editReactiveForm.controls.lastName.touched ? 'error' : '' }}" />
+                        <div
+                            *ngIf="editReactiveForm.controls.lastName.errors?.required && editReactiveForm.controls.lastName.touched">
+                            <label class="error err">LastName Required !</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.lastName.errors?.minlength">
+                            <label class="error err">LastName must be at least 3
+                                characters</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.lastName.errors?.pattern">
+                            <label class="error err">LastName not valid!</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.lastName.errors?.maxlength">
+                            <label class="error err">LastName Too Long</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="control-label">Phone number<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="phone" name="phone"
+                            class="form-control inputBlack {{ !editReactiveForm.controls.phone.valid && editReactiveForm.controls.phone.touched ? 'error' : '' }}"
+                            value="{{selectedRow.phoneNumber}}" />
+                        <div
+                            *ngIf="editReactiveForm.controls.phone.errors?.required && editReactiveForm.controls.phone.touched">
+                            <label class="error err">Phone Required !</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.phone.errors?.pattern">
+                            <label class="error err">Phone number not
+                                valid!</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="control-label">Email<span class="error font-trans">*</span></label>
+                        <input type="text" formControlName="email" name="email"
+                            class="form-control inputBlack {{ !editReactiveForm.controls.email.valid && editReactiveForm.controls.email.touched ? 'error' : '' }}"
+                            value="{{selectedRow?.email}}" />
+                        <div
+                            *ngIf="editReactiveForm.controls.email.errors?.required && editReactiveForm.controls.email.touched">
+                            <label class="error err">Email Required !</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.email.errors?.pattern">
+                            <label class="error err">Email not valid!</label>
+                        </div>
+                        <div *ngIf="editReactiveForm.controls.email.errors?.maxlength">
+                            <label class="error err">Email Too Long</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="university" class="form-label inputBlack">University* </label>
+                        <select formControlName="university" name="university" required #university (change)="optionValueChanged('university', university.value)"
+                            class="form-select {{ !editReactiveForm.controls.university.valid && editReactiveForm.get('university').touched ? 'error' : '' }}">
+                            <option *ngFor="let university of universities" [value]="university">{{university}}</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div
+                            *ngIf="editReactiveForm.controls.university.errors?.required && editReactiveForm.get('university').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="selectst" class="form-label inputBlack">Anapec* </label>
+                        <select formControlName="anapec" [(ngModel)]="selectedRow.anapec" name="anapec"
+                            class="form-select {{ !editReactiveForm.controls.anapec.valid && editReactiveForm.controls.anapec.touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>No</option>
+                        </select>
+                        <div
+                            *ngIf="editReactiveForm.controls.anapec.errors?.required && editReactiveForm.controls.anapec.touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="city" class="form-label inputBlack">City* </label>
+                        <select formControlName="city" name="city" required #city (change)="optionValueChanged('city', city.value)"
+                            class="form-select {{ !editReactiveForm.controls.city.valid && editReactiveForm.get('city').touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div
+                            *ngIf="editReactiveForm.controls.city.errors?.required && editReactiveForm.get('city').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="selectst" class="form-label inputBlack">Gender* </label>
+                        <select formControlName="gender" [(ngModel)]="selectedRow.gender" name="gender"
+                            class="form-select {{ !editReactiveForm.controls.gender.valid && editReactiveForm.controls.gender.touched ? 'error' : '' }}">
+                            <option selected></option>
+                            <option value="male">Male</option>
+                            <option value="female" selected>Female</option>
+                        </select>
+                        <div
+                            *ngIf="editReactiveForm.controls.gender.errors?.required && editReactiveForm.controls.gender.touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div *ngIf="currentFile" class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{ width: progress + '%' }">
+                                {{ progress }}%
+                            </div>
+                        </div>
+                        <div class="ml-2">
+                            <label for="file" id="file" class="form-label inputBlack">CV* <small
+                                    class="text-danger">(firstname_lasname.pdf)</small></label>
+                            <input type="file" (change)="onselectFile($event)" formControlName="cv" name="cv"
+                                class="form-control inputBlack {{ !editReactiveForm.controls.cv.valid && editReactiveForm.controls.cv.touched ? 'error' : '' }}" />
+                            <div
+                                *ngIf="editReactiveForm.controls.cv.errors?.required && editReactiveForm.controls.cv.touched">
+                                <label class="error err">cv Required !</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="diplome" class="form-label inputBlack"> Diploma </label>
+                        <select formControlName="diplome" name="diplome"
+                            class="form-select {{ !editReactiveForm.controls.diplome.valid && editReactiveForm.get('diplome').touched ? 'error' : '' }}">
+                            <option *ngFor="let diploma of diplomas" [value]="diploma" >{{diploma}}</option>
+                        </select>
+                        <div
+                            *ngIf="editReactiveForm.controls.diplome.errors?.required && editReactiveForm.get('diplome').touched">
+                            <label class="error err">Required Field!</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr class="top">
+<input type="submit" hidden />
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info" id="cheat2" (click)="closeModal()">Close</button>
+    <button type="submit" class="btn btn" (click)="updateCandidate()">Save</button>
+</div>

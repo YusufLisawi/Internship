@@ -1,0 +1,401 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="exampleModalLabel">Add new Internship</h3>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal()"
+  ></button>
+</div>
+<hr />
+<div class="modal-body">
+  <div class="row">
+    <form [formGroup]="addReactiveForm">
+      <div class="form-row">
+        <div class="col-md-7">
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Candidate<span class="error font-trans">*</span>
+                </label>
+                <ng-select
+                  id="ng-select-ele"
+                  class="w-75 custom"
+                  [items]="candidatesOptions"
+                  [(ngModel)]="selectedCandidate"
+                  formControlName="candidate"
+                  appendTo="#ng-select-ele"
+                >
+                </ng-select>
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.candidate.errors?.required &&
+                  addReactiveForm.get('candidate').touched
+                "
+              >
+                <label class="error err">Candidate Required !</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Supervisor<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="text"
+                  name="supervisor"
+                  formControlName="supervisor"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.supervisor.errors?.required &&
+                  addReactiveForm.get('supervisor').touched
+                "
+              >
+                <label class="error err">Supervisor Required !</label>
+              </div>
+              <div
+                *ngIf="addReactiveForm.controls.supervisor.errors?.minlength"
+              >
+                <label class="error err"
+                  >Supervisor must be at least 2 characters</label
+                >
+              </div>
+              <div *ngIf="addReactiveForm.controls.supervisor.errors?.pattern">
+                <label class="error err">Supervisor name not valid!</label>
+              </div>
+              <div
+                *ngIf="addReactiveForm.controls.supervisor.errors?.maxlength"
+              >
+                <label class="error err">Supervisor Too Long</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label w-25" title="Supervisor email"
+                  >Supv Email<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="text"
+                  name="supervisorEmail"
+                  formControlName="supervisorEmail"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.supervisorEmail.errors?.required &&
+                  addReactiveForm.get('supervisorEmail').touched
+                "
+              >
+                <label class="error err">Email Required !</label>
+              </div>
+              <div
+                *ngIf="addReactiveForm.controls.supervisorEmail.errors?.pattern"
+              >
+                <label class="error err">Email not valid!</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label w-25" title="Supervisor phone"
+                  >Supv Phone
+                </label>
+                <input
+                  type="text"
+                  name="supervisorPhone"
+                  formControlName="supervisorPhone"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="addReactiveForm.controls.supervisorPhone.errors?.pattern"
+              >
+                <label class="error err">Phone number not valid!</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Subject<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="text"
+                  name="subject"
+                  formControlName="subject"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.subject.errors?.required &&
+                  addReactiveForm.get('subject').touched
+                "
+              >
+                <label class="error err">Subject Required !</label>
+              </div>
+              <div *ngIf="addReactiveForm.controls.subject.errors?.minlength">
+                <label class="error err"
+                  >Subject must be at least 2 characters</label
+                >
+              </div>
+              <div *ngIf="addReactiveForm.controls.subject.errors?.maxlength">
+                <label class="error err">Subject Too Long</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <div class="col-md-3 pl-0">
+                  <label class="control-label"
+                    >Type<span class="error font-trans">*</span>
+                  </label>
+                </div>
+                <div class="col-md-3 p-0">
+                  <input
+                    type="radio"
+                    id="pfa"
+                    value="PFA"
+                    name="type"
+                    formControlName="type"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label" class="control-label"
+                    >PFA
+                  </label>
+                </div>
+                <div class="col-md-3 p-0">
+                  <input
+                    type="radio"
+                    id="pfe"
+                    value="PFE"
+                    name="type"
+                    formControlName="type"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label" class="control-label"
+                    >PFE
+                  </label>
+                </div>
+                <div class="col-md-3 p-0">
+                  <input
+                    type="radio"
+                    id="Stage"
+                    value="Stage"
+                    name="type"
+                    formControlName="type"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label" class="control-label"
+                    >Stage
+                  </label>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.type.errors?.required &&
+                  addReactiveForm.get('type').touched
+                "
+              >
+                <label class="error err">Type Required !</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Start Date<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="date"
+                  name="startDate"
+                  formControlName="startDate"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.startDate.errors?.required &&
+                  addReactiveForm.get('startDate').touched
+                "
+              >
+                <label class="error err">Start date Required !</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >End Date<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="date"
+                  name="endDate"
+                  formControlName="endDate"
+                  class="form-control inputBlack w-75"
+                />
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.endDate.errors?.required &&
+                  addReactiveForm.get('endDate').touched
+                "
+              >
+                <label class="error err">End Date Required !</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 borderLft">
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >CIN<span class="error font-trans">*</span>
+                </label>
+                <input
+                  type="file"
+                  (change)="onselectFile($event)"
+                  name="cin"
+                  formControlName="cin"
+                  class="form-control inputBlack w-75"
+                  accept="application/pdf"
+                  class="form-control inputBlack {{
+                    !addReactiveForm.controls.cin.valid &&
+                    addReactiveForm.controls.cin.touched
+                      ? 'error'
+                      : ''
+                  }}"
+                />
+              </div>
+              <div *ngIf="cinFile" class="progress">
+                <div
+                  class="progress-bar progress-bar-info progress-bar-striped"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ cinProgress }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: cinProgress + '%' }"
+                >
+                  {{ cinProgress }}%
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.cin.errors?.required &&
+                  addReactiveForm.get('cin').touched
+                "
+              >
+                <label class="error err">File Required !</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Agreement<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="file"
+                  name="agreement"
+                  formControlName="agreement"
+                  class="form-control inputBlack w-75"
+                  accept="application/pdf"
+                  (change)="onselectFile($event)"
+                  class="form-control inputBlack {{
+                    !addReactiveForm.controls.agreement.valid &&
+                    addReactiveForm.controls.agreement.touched
+                      ? 'error'
+                      : ''
+                  }}"
+                />
+              </div>
+              <div *ngIf="agreementFile" class="progress">
+                <div
+                  class="progress-bar progress-bar-info progress-bar-striped"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ agreementProgress }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: agreementProgress + '%' }"
+                >
+                  {{ agreementProgress }}%
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.agreement.errors?.required &&
+                  addReactiveForm.get('agreement').touched
+                "
+              >
+                <label class="error err">File date Required !</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row mb-3">
+            <div class="col">
+              <div class="d-flex justify-content-between">
+                <label class="control-label"
+                  >Assurance<span class="error font-trans">*</span></label
+                >
+                <input
+                  type="file"
+                  name="assurance"
+                  formControlName="assurance"
+                  class="form-control inputBlack w-75"
+                  accept="application/pdf"
+                  (change)="onselectFile($event)"
+                  class="form-control inputBlack {{
+                    !addReactiveForm.controls.assurance.valid &&
+                    addReactiveForm.controls.assurance.touched
+                      ? 'error'
+                      : ''
+                  }}"
+                />
+              </div>
+              <div *ngIf="assuranceFile" class="progress">
+                <div
+                  class="progress-bar progress-bar-info progress-bar-striped"
+                  role="progressbar"
+                  attr.aria-valuenow="{{ assuranceProgress }}"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  [ngStyle]="{ width: assuranceProgress + '%' }"
+                >
+                  {{ assuranceProgress }}%
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  addReactiveForm.controls.assurance.errors?.required &&
+                  addReactiveForm.get('assurance').touched
+                "
+              >
+                <label class="error err">File Required !</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr class="top" />
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-info" id="cheat" (click)="closeModal()">
+    Close
+  </button>
+  <button type="button" class="btn btn" (click)="addInternship()" name="save">
+    Save
+  </button>
+</div>

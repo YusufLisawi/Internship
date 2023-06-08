@@ -1,0 +1,337 @@
+    .con1 {
+        display: inline-block;
+        flex-direction: row;
+        justify-content: left;
+        height: 510px;
+        width: 100%;
+        overflow: hidden;
+        background-color: rgba(76, 0, 255, 0.096);
+        margin-left: -10px;
+    }
+    
+    .con2 {
+        display: inline-block;
+        flex-direction: row;
+        justify-content: center;
+        height: 579px;
+        min-width: 754px;
+        padding-bottom: 40px;
+        overflow: hidden;
+        margin-top: -32px;
+        margin-left: -28px;
+    }
+    
+    .scrollable {
+        height: 570px;
+        overflow-y: visible;
+        overflow-x: auto;
+    }
+    
+    .list-group {
+        height: 440px;
+        overflow-y: auto;
+    }
+    
+    .test1 {
+        width: 100% !important;
+        table-layout: auto;
+    }
+    
+    .test2 {
+        width: 100% !important;
+        table-layout: auto;
+    }
+    
+    .vl {
+        border-left: 6px solid rgba(76, 0, 255, 0.2);
+        height: 570px;
+    }
+    
+    .vl2 {
+        border-left: 6px solid rgba(76, 0, 255, 0.2);
+        height: 539px;
+        margin-left: 718px;
+    }
+    
+    .input-group-btn {
+        margin-top: -20px;
+    }
+    
+    .list-group-item {
+        position: relative;
+        display: block;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .vlEdit {
+        border-left: 6px solid rgba(76, 0, 255, 0.2);
+        height: 570px;
+    }
+    
+    .action-list {
+        width: 10px;
+    }
+    /******* settings****/
+    
+    .radio-tabs {
+        display: flex;
+        flex-flow: row;
+    }
+    
+    .radio-tabs .state {
+        position: absolute;
+        left: -10000px;
+    }
+    
+    #radio1:focus~.tabs #first-tab,
+    #radio2:focus~.tabs #second-tab,
+    #radio3:focus~.tabs #third-tab,
+    #radio4:focus~.tabs #fourth-tab {
+        box-shadow: 0 0 3px 3px rgba(0, 127, 255, .5);
+    }
+    /* Tab button container */
+    
+    .tabs {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        flex: 10%;
+        /*   border: 4px solid green; */
+        height: 500px;
+        align-self: center;
+    }
+    /* Tab button */
+    
+    .radio-tabs .tab {
+        flex: none;
+        display: flex;
+        flex-flow: column;
+        text-align: center;
+        padding:0.5em;
+        background-color: transparent;
+        color: #fff;
+        cursor: hand;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, .1);
+    }
+    
+    .radio-tabs .tab:hover {
+        background-color: rgba(44, 83, 122, 0.3);
+        opacity: 0.7;
+    }
+    
+    .tab-label:checked {
+        color: rgb(47, 93, 139) !important
+    }
+    
+    #radio1:checked~.tabs #first-tab,
+    #radio2:checked~.tabs #second-tab,
+    #radio3:checked~.tabs #third-tab,
+    #radio4:checked~.tabs #fourth-tab {
+        background-color: rgba(49, 80, 110, 0.5);
+        cursor: default;
+    }
+    
+    .tab-label {
+        font-size: 18px;
+        line-height: 1.2rem;
+        padding: 10px;
+    }
+    
+    .radio-tabs .panels {
+        flex: 70%;
+        padding: .5em;
+    }
+    
+    .radio-tabs .panel {
+        display: none;
+        margin-left: 100px;
+    }
+    
+    #radio1:checked~.panels #first-panel,
+    #radio2:checked~.panels #second-panel,
+    #radio3:checked~.panels #third-panel,
+    #radio4:checked~.panels #fourth-panel {
+        display: block;
+    }
+    
+    .slide-title {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+    }
+    
+    .slide-subtitle {
+        text-align: center;
+        font-size: 1.6rem;
+        font-style: italic;
+    }
+    
+    .left {
+        text-align: left;
+    }
+    
+    .slide-item {
+        font-size: 1.4rem;
+    }
+    
+    .modalLargecv {
+        max-width: 97% !important;
+    }
+    
+    .cvYes {
+        color: rgba(105, 209, 102, 0.685);
+        cursor: pointer;
+    }
+    
+    .cvNo {
+        color: rgba(212, 65, 65, 0.616);
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    
+    .top1 {
+        margin-top: -20px;
+    }
+    
+    .borderRight {
+        background-color: rgba(76, 0, 255, 0.096);
+        border-right: 5px solid rgba(76, 0, 255, 0.2);
+    }
+    
+    .accept {
+        background-color: rgba(140, 255, 136, 0.4);
+        border-radius: 12px;
+        text-align: center;
+        margin: 1px;
+    }
+    
+    .reject {
+        background-color: rgba(255, 136, 136, 0.4);
+        border-radius: 12px;
+        text-align: center;
+        margin: 1px;
+    }
+    
+    .divTest {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100% !important;
+    }
+    
+    .greenList {
+        background-color: rgba(140, 255, 136, 0.4);
+    }
+    
+    .redList {
+        background-color: rgba(255, 136, 136, 0.4);
+    }
+    
+    .greenColor {
+        color: rgba(5, 143, 3, 0.582);
+    }
+    
+    .redColor {
+        color: rgba(156, 33, 33, 0.541);
+    }
+    
+    .whiteList {
+        background-color: rgba(235, 235, 235, 0.473);
+    }
+    
+    .iSize {
+        font-size: 20px
+    }
+    
+    .aMargin {
+        margin-left: 10px;
+    }
+
+    .disabled{
+        opacity: 0.6;
+    }
+    
+    .modalSession {
+        margin-top: -70px;
+    }
+    
+    .buttonsCV {
+        position: relative;
+        z-index: 3;
+    }
+    
+    .weekDays-selector input {
+        display: none!important;
+    }
+    
+    .weekDays-selector input[type=checkbox]+label {
+        display: inline-block;
+        border-radius: 6px;
+        background: #dddddd;
+        height: 40px;
+        width: 50px;
+        margin-right: 7px;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    .weekDays-selector input[type=checkbox]:checked+label {
+        background: #6485C1;
+        color: #ffffff;
+    }
+    
+    .sel33 {
+        width: 190px;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .inner-addon {
+        position: relative;
+    }
+    
+    .inner-addon .far,
+    .inner-addon .fas {
+        position: absolute;
+        padding: 10px 30px;
+        z-index: 100;
+        cursor: pointer;
+    }
+    
+    .left-addon .far,
+    .left-addon .fas {
+        left: 0px;
+    }
+    
+    .right-addon .far,
+    .right-addon .fas {
+        right: 0px;
+    }
+    
+    .left-addon input {
+        padding-left: 30px;
+    }
+    
+    .right-addon input {
+        padding-right: 30px;
+    }
+    
+    .err {
+        color: #D63301 !important;
+    }
+    
+    .font-trans {
+        opacity: 0.5 !important;
+    }
+    
+    .current {
+        float: right;
+    }
+    
+    .currentsess {
+        font-weight: 700;
+        color: #6485C1;
+    }
